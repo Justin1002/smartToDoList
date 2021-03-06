@@ -22,4 +22,16 @@ const checkDuckDuckGoAPI = (taskString, callback) => {
   });
 };
 
+const checkWikipediaAPI = (taskString, callback) => {
+  //replace all spaces with a + for API call
+  const queryString = taskString.split(' ').join('%20');
+  request(`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${queryString}&format=json`, function (error, response, body) {
+    const obj = JSON.parse(body);
+    // console.log(obj);
+    let descriptor = [];
+    descriptor.push(obj.query.search[0].snippet)
+    callback(descriptors);
+  });
+};
+
 module.exports = {};
