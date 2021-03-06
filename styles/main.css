@@ -1,0 +1,40 @@
+header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around
+}
+
+header div h1 {
+	border: 3px solid black;
+	color: black;
+}
+
+button {
+	cursor: pointer;
+}
+
+.button-group button {
+	border: 3px solid black;
+	padding: 10px, 24px;
+	float: left;
+}
+
+.button-group button:hover {
+	background-color: rgb(177, 177, 177);
+}
+
+.button-group button:not(:last-child) {
+	border-right: none;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	width: 90%;
+	margin: auto;
+}
+
+section {
+	border: 3px solid black;
+	padding: 20px;
+}

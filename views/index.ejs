@@ -1,17 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Home Page</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+<head>
+	<title>Home Page</title>
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
+	<link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+	<link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+	<link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+	<link rel="stylesheet" href="/styles/main.css" type="text/css" />
 
-  <body>
-    <h1>Hello World!</h1>
-  </body>
+	<script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+	<script type="text/javascript" src="/scripts/app.js"></script>
+</head>
+
+<body>
+	<header>
+		<div>
+			<!-- add logo image here -->
+			<h1>(App Logo)</h1>
+		</div>
+		<div>
+			<h1>User Name</h1>
+		</div>
+	</header>
+
+	<main>
+		<div class="button-group">
+			<button>All</button>
+			<button>Watch</button>
+			<button>Eat</button>
+			<button>Read</button>
+			<button>Buy</button>
+			<button>Uncategorized</button>
+			<button>Completed</button>
+		</div>
+		<br>
+		<form id="task-form" method="POST" action="/tasks/">
+			<div>
+				<button type="submit">Add a new task</button>
+			</div>
+		</form>
+		<br>
+		<section id="tasks-container">
+			<div>
+				<h2>To watch:</h2>
+			</div>
+			<div>
+				<h2>To eat:</h2>
+			</div>
+			<div>
+				<h2>To read:</h2>
+			</div>
+			<div>
+				<h2>To buy:</h2>
+			</div>
+			<div>
+				<h2>Uncategorized:</h2>
+			</div>
+		</section>
+	</main>
+</body>
+
 </html>
