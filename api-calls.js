@@ -1,4 +1,5 @@
 const request = require('request')
+require('dotenv').config();
 
 const checkDuckDuckGoAPI = (taskString, callback) => {
   //replace all spaces with a + for API call
@@ -30,7 +31,18 @@ const checkWikipediaAPI = (taskString, callback) => {
     // console.log(obj);
     let descriptor = [];
     descriptor.push(obj.query.search[0].snippet)
-    callback(descriptors);
+    callback(descriptor);
+  });
+};
+
+const getCoords = (city,callback) => {
+  const cityString = city.split(' ').join('%20');
+  request(`http://www.mapquestapi.com/geocoding/v1/address?key=${MQ_APIKEY}&location=${cityString}`, function (error, response, body) {
+    const obj = JSON.parse(body);
+    const coords = [];
+    coords.push(obj.results[0].locations[0].latLng.lat);
+    coords.push(obj.results[0].locations[0].latLng.lng);
+    callback(coords);
   });
 };
 
