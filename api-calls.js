@@ -1,5 +1,6 @@
-const request = require('request')
 require('dotenv').config();
+const request = require('request')
+const yelpClient = require(YELP_APIKEY);
 
 const checkDuckDuckGoAPI = (taskString, callback) => {
   //replace all spaces with a + for API call
@@ -45,5 +46,16 @@ const getCoords = (city,callback) => {
     callback(coords);
   });
 };
+
+const checkYelp = (queryString,city) => {
+  return yelpClient.search({
+    term: queryString,
+    location: city,
+  }).then(response => {
+    return response.jsonBody.businesses[0].name;
+  }).catch(e => {
+    console.log(e);
+  });
+}
 
 module.exports = {};
