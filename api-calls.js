@@ -1,16 +1,25 @@
 const request = require('request')
 
-const checkDuckDuckGo = (taskString) => {
+const checkDuckDuckGoAPI = (taskString, callback) => {
   //replace all spaces with a + for API call
   const queryString = taskString.split(' ').join('+');
-
   request(`https://api.duckduckgo.com/?q=${queryString}&format=json`, function (error, response, body) {
-    console.error('error:', error); // Print the error if one occurred
-    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    console.log(body); // Print the HTML for the Google homepage.
+    const obj = JSON.parse(body);
+    // console.log(obj);
+    if (obj.AbstractURL.includes('disambiguation')) {
+      console.log('ambiguous');
+      //DuckDuckGO has no idea what were querying and we can't categorize accurately.
+      let descriptors = [];
+      for(const element in obj.RelatedTopics)
+      {
+        descriptors.push(obj.RelatedTopics[element].Text);
+      }
+      callback(descriptors);
+    } else {
+      //To be implemented
+      console.log('Not Ambiguous');
+    }
   });
-
-
 };
 
-module.exports = {}
+module.exports = {};

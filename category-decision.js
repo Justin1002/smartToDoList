@@ -5,13 +5,13 @@ const simpleTaskCheck = (taskString) => {
   const lowerCaseTask = taskString.toLowerCase();
   let category = null;
 
-  if (lowerCaseTask.includes("eat")) {
+  if (lowerCaseTask.includes("eat") || lowerCaseTask.includes('food')) {
     category = "food";
-  } else if (lowerCaseTask.includes("watch")) {
+  } else if (lowerCaseTask.includes("watch") || lowerCaseTask.includes('movie')) {
     category = "film";
-  } else if (lowerCaseTask.includes("read")) {
+  } else if (lowerCaseTask.includes("read") || lowerCaseTask.includes('book')) {
     category = "book";
-  } else if (lowerCaseTask.includes("buy")) {
+  } else if (lowerCaseTask.includes("buy") || lowerCaseTask.includes('store')) {
     category = "product";
   }
   return category;
