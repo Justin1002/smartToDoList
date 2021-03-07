@@ -8,14 +8,11 @@ const checkDuckDuckGoAPI = (taskString) => {
   return request(`https://api.duckduckgo.com/?q=${queryString}&format=json`)
   .then((response) => {
     const obj = JSON.parse(response);
-    console.log(obj);
-    if (obj.AbstractURL.includes("disambiguation")) {
-      //console.log("ambiguous");
-      let descriptors = [];
-      for (const element in obj.RelatedTopics) {
-        descriptors.push(obj.RelatedTopics[element].Text);
-      }
-    return descriptors;
+    // console.log(obj);
+    if (obj.Abstract) {
+      return obj.Abstract;
+    } else {
+      return null;
     }
   })
   .catch((error) => {
