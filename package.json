@@ -22,7 +22,11 @@
     "morgan": "^1.9.1",
     "node-sass-middleware": "^0.11.0",
     "pg": "^6.4.2",
-    "pg-native": "^3.0.0"
+    "pg-native": "^3.0.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "xml-js": "^1.6.11",
+    "yelp-fusion": "^3.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
