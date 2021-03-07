@@ -1,13 +1,27 @@
 header {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: space-between;
+	height: 100px;
+	padding: 10px;
+	margin: 20px;
 }
 
 header h1 {
-	border: 3px solid black;
+	/* border: 3px solid black; */
 	padding: 3px;
 	color: black;
+}
+
+header div {
+	display: flex;
+	align-items: center;
+}
+
+header div img{
+	height: 70px;
+	padding-left: 10px;
+	/* margin: 20px; */
 }
 
 button {
