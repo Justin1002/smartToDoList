@@ -14,6 +14,7 @@ const checkDuckDuckGoAPI = (taskString) => {
       for (const element in obj.RelatedTopics) {
         descriptors.push(obj.RelatedTopics[element].Text);
       }
+    return descriptors;
     }
   })
   .catch((error) => {
@@ -38,7 +39,7 @@ const checkWikipediaAPI = (taskString) => {
 
 const getCoords = (city) => {
   const cityString = city.split(' ').join('%20');
-  request(`http://www.mapquestapi.com/geocoding/v1/address?key=${process.env.MQ_APIKEY}&location=${cityString}`)
+  return request(`http://www.mapquestapi.com/geocoding/v1/address?key=${process.env.MQ_APIKEY}&location=${cityString}`)
   .then((response) => {
       const obj = JSON.parse(response);
       const coords = [];
