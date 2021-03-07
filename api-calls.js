@@ -1,49 +1,53 @@
 require('dotenv').config();
-const request = require('request')
-const yelpClient = require(YELP_APIKEY);
+const request = require('request-promise')
+const yelpClient = require(process.env.YELP_APIKEY);
 
-const checkDuckDuckGoAPI = (taskString, callback) => {
-  //replace all spaces with a + for API call
-  const queryString = taskString.split(' ').join('+');
-  request(`https://api.duckduckgo.com/?q=${queryString}&format=json`, function (error, response, body) {
-    const obj = JSON.parse(body);
-    // console.log(obj);
-    if (obj.AbstractURL.includes('disambiguation')) {
-      console.log('ambiguous');
-      //DuckDuckGO has no idea what were querying and we can't categorize accurately.
+const checkDuckDuckGoAPI = (taskString) => {
+  const queryString = taskString.split(' ').join('+');  //replace all spaces with a + for API call
+  return request(`https://api.duckduckgo.com/?q=${queryString}&format=json`)
+  .then((response) => {
+    const obj = JSON.parse(response);
+    console.log(obj);
+    if (obj.AbstractURL.includes("disambiguation")) {
+      //console.log("ambiguous");
       let descriptors = [];
-      for(const element in obj.RelatedTopics)
-      {
+      for (const element in obj.RelatedTopics) {
         descriptors.push(obj.RelatedTopics[element].Text);
       }
-      callback(descriptors);
-    } else {
-      //To be implemented
-      console.log('Not Ambiguous');
     }
+  })
+  .catch((error) => {
+    console.log(error);
   });
 };
 
-const checkWikipediaAPI = (taskString, callback) => {
+const checkWikipediaAPI = (taskString) => {
   //replace all spaces with a + for API call
   const queryString = taskString.split(' ').join('%20');
-  request(`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${queryString}&format=json`, function (error, response, body) {
-    const obj = JSON.parse(body);
-    // console.log(obj);
+  return request(`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${queryString}&format=json`)
+  .then((response) => {
+    const obj = JSON.parse(response);
     let descriptor = [];
     descriptor.push(obj.query.search[0].snippet)
-    callback(descriptor);
+    return descriptor;
+  })
+  .catch((error) => {
+    console.log(error);
   });
 };
 
-const getCoords = (city,callback) => {
+const getCoords = (city) => {
   const cityString = city.split(' ').join('%20');
-  request(`http://www.mapquestapi.com/geocoding/v1/address?key=${MQ_APIKEY}&location=${cityString}`, function (error, response, body) {
-    const obj = JSON.parse(body);
-    const coords = [];
-    coords.push(obj.results[0].locations[0].latLng.lat);
-    coords.push(obj.results[0].locations[0].latLng.lng);
-    callback(coords);
+  request(`http://www.mapquestapi.com/geocoding/v1/address?key=${process.env.MQ_APIKEY}&location=${cityString}`)
+  .then((response) => {
+      const obj = JSON.parse(response);
+      const coords = [];
+      coords.push(obj.results[0].locations[0].latLng.lat);
+      coords.push(obj.results[0].locations[0].latLng.lng);
+      return coords;
+  })
+  .catch((error) => {
+    console.log(error);
   });
 };
 
@@ -56,6 +60,6 @@ const checkYelp = (queryString,city) => {
   }).catch(e => {
     console.log(e);
   });
-}
+};
 
 module.exports = {};
