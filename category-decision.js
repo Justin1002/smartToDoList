@@ -43,7 +43,7 @@ const simpleTaskCheck = (taskString) => {
     lowerCaseTask.includes("buy") ||
     lowerCaseTask.includes("store") ||
     lowerCaseTask.includes("retail") ||
-    lowerCaseTask.includes('groceries')
+    lowerCaseTask.includes('grocer')
   ) {
     category = "product";
   }
@@ -51,6 +51,7 @@ const simpleTaskCheck = (taskString) => {
 };
 
 const categoryDecision = (taskString) => {
+  //NEED TO IMPLEMENT OTHER ARGUMENT WHICH IS CITY FOR YELP CHECK
   //Check obvious keywords
   //If obvious keywords fail, start calling APIS.
   let category = null;
