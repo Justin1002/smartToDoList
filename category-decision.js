@@ -43,7 +43,8 @@ const simpleTaskCheck = (taskString) => {
     lowerCaseTask.includes("buy") ||
     lowerCaseTask.includes("store") ||
     lowerCaseTask.includes("retail") ||
-    lowerCaseTask.includes('grocer')
+    lowerCaseTask.includes("grocer") ||
+    lowerCaseTask.includes("purchase")
   ) {
     category = "buy";
   }
@@ -74,7 +75,7 @@ const categoryDecision = (taskString, city) => {
         return category;
       } else if (
         response.includes("ConsumerPTE") ||
-        response.includes("Invention") 
+        response.includes("Invention")
       ) {
         //Add to Product
         category = "buy";
