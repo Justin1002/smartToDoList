@@ -43,7 +43,7 @@ module.exports = (db) => {
       .then (
         task => {
           console.log(task)
-          res.send(task)
+          res.send(task);
         }
       )
       .catch (e => {

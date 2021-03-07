@@ -61,9 +61,10 @@ const categoryDecision = (taskString, city) => {
   } else {
     //Time to start querying the API's
     return checkWolfram(taskString).then((response) => {
-      if (response.includes("Book")) {
+      if (response.includes("Book") ||
+          response.includes("FictionalCharacter")) {
         //add to Book
-        category = "eat";
+        category = "read";
         return category;
       } else if (
         response.includes("Movie") ||
@@ -73,7 +74,7 @@ const categoryDecision = (taskString, city) => {
         return category;
       } else if (
         response.includes("ConsumerPTE") ||
-        response.includes("Invention")
+        response.includes("Invention") 
       ) {
         //Add to Product
         category = "buy";
