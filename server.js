@@ -43,14 +43,14 @@ maxAge: 24 * 60 * 60 * 1000
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
+const taskRoutes = require("./routes/tasks");
 const loginRoutes = require("./routes/login");
 const logoutRoutes = require("./routes/logout");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/users", usersRoutes(db));
 app.use("/login", loginRoutes());
-app.use("/tasks", widgetsRoutes(db));
+app.use("/tasks", taskRoutes(db));
 app.use("/logout", logoutRoutes());
 // Note: mount other resources here, using the same pattern above
 
