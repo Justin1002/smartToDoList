@@ -1,10 +1,16 @@
-const apiCall = require('api-calls');
+// const apiCall = require('api-calls');
+const {
+  checkDuckDuckGoAPI,
+  checkWikipediaAPI,
+  getCoords,
+  checkYelp
+} = require("api-calls");
+
 
 const simpleTaskCheck = (taskString) => {
   //Going to lowercase the entie string to make for easy checking.
   const lowerCaseTask = taskString.toLowerCase();
   let category = null;
-
   if (lowerCaseTask.includes("eat") || lowerCaseTask.includes('food')) {
     category = "food";
   } else if (lowerCaseTask.includes("watch") || lowerCaseTask.includes('movie')) {
@@ -22,13 +28,10 @@ const categoryDecision = (taskString) => {
   //If obvious keywords fail, start calling APIS.
   let category = null;
   category = simpleTaskCheck(taskString);
-  if(category)
-  {
+  if(category) {
     return category;
   } else {
-  //API checks
-
-  //General search
+    //Time to start querying the API's
 
 
   }

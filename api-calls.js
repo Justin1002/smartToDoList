@@ -1,6 +1,7 @@
 require('dotenv').config();
 const request = require('request-promise')
 const yelpClient = require(process.env.YELP_APIKEY);
+const convert = require('xml-js');
 
 const checkDuckDuckGoAPI = (taskString) => {
   const queryString = taskString.split(' ').join('+');  //replace all spaces with a + for API call
@@ -63,4 +64,24 @@ const checkYelp = (queryString,city) => {
   });
 };
 
-module.exports = {};
+const checkWolfram = (taskString) => {
+  const queryString = taskString.split(' ').join('+');
+  // `http://api.wolframalpha.com/v2/query?input=${queryString}&appid=${process.env.WAAPIKEY}`
+  return request(`http://api.wolframalpha.com/v2/query?input=${queryString}&appid=${process.env.WAAPIKEY}`)
+  .then((response) => {
+    const obj = convert.xml2json(response);
+    return obj.elements[0].attributes.datatypes;
+    }
+  )
+  .catch((error) => {
+    console.log(error);
+  });
+};
+
+module.exports = {
+  checkDuckDuckGoAPI,
+  checkWikipediaAPI,
+  getCoords,
+  checkYelp,
+  checkWolfram
+};

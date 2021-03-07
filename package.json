@@ -23,6 +23,7 @@
     "pg-native": "^3.0.0",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
+    "xml-js": "^1.6.11",
     "yelp-fusion": "^3.0.0"
   },
   "devDependencies": {
