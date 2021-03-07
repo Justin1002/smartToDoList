@@ -70,7 +70,8 @@ const checkWolfram = (taskString) => {
   return request(`http://api.wolframalpha.com/v2/query?input=${queryString}&appid=${process.env.WAAPIKEY}`)
   .then((response) => {
     const obj = convert.xml2json(response);
-    return obj.elements[0].attributes.datatypes;
+    const JSONobj = JSON.parse(obj);
+    return JSONobj.elements[0].attributes.datatypes;
     }
   )
   .catch((error) => {

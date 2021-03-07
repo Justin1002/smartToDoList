@@ -3,7 +3,8 @@ const {
   checkDuckDuckGoAPI,
   checkWikipediaAPI,
   getCoords,
-  checkYelp
+  checkYelp,
+  checkWolfram
 } = require("api-calls");
 
 
@@ -32,7 +33,27 @@ const categoryDecision = (taskString) => {
     return category;
   } else {
     //Time to start querying the API's
+    checkWolfram(taskString)
+    .then((response) => {
+      if (response.includes('Book')){
+        //add to Book
+      }
+      else if (response.includes('Movie') || response.includes('TelevisionProgram')) {
+        //Add to Films
+      }
+      else if (response.includes('ConsumerPTE') || response.includes('Invention'))
+      {
+        //Add to Product
+      }
+      else if (response.includes('RetailLocation'))
+      {
+        //Add to Eat
+      }
+      else{
+        // Cannot categorize - Lets try DuckDuckGo
 
 
+      }
+    });
   }
 };
