@@ -6,7 +6,7 @@
  */
 const express = require('express');
 const router  = express.Router();
-
+const { categoryDecision } = require('../category-decision')
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
@@ -33,15 +33,24 @@ module.exports = (db) => {
     }
     const description = req.body.text_description
 
-    insertUserTask(userID, description, db)
-      .then(task => {
-        console.log(task)
-        res.send(task)
-      })
-      .catch(e => {
+    getCity(userID, db)
+      .then(
+        res => categoryDecision(description, res)
+      )
+      .then(
+        res => insertUserTask(userID, description, res, db)
+      )
+      .then (
+        task => {
+          console.log(task)
+          res.send(task)
+        }
+      )
+      .catch (e => {
         console.error(e);
         res.send(e)
       })
+
   })
 
   router.put("/:taskID", (req,res) => {
@@ -86,6 +95,7 @@ module.exports = (db) => {
       })
 
   })
+
   return router;
 };
 
@@ -103,14 +113,14 @@ const getUserTasks = function(userid,db) {
     });
 }
 
-const insertUserTask = function(userid, description, db) {
+const insertUserTask = function(userid, description, category, db) {
   let date = new Date()
 
   let query = `INSERT INTO tasks (user_id, category, description, creation_date)
   VALUES ($1,$2,$3,$4)
   RETURNING *;`
 
-  const values = [userid, 'catFunction', description, date]
+  const values = [userid, category, description, date]
 
   return db.query(query, values)
     .then(res => res.rows[0])
@@ -141,6 +151,19 @@ const deleteTask = function(userID, taskID, db) {
   WHERE user_id = $1 AND id = $2`
 
   const values = [userID, taskID]
+  return db.query(query,values)
+    .then (
+      res => res.rows[0]
+    )
+    .catch(err => {
+      console.error('query error', err.stack);
+    })
+}
+
+const getCity = function(userID, db) {
+  let query = `SELECT location FROM users
+  WHERE user_id = $1`
+  let values = [userID]
   return db.query(query,values)
     .then (
       res => res.rows[0]

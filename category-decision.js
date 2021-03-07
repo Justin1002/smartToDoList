@@ -4,8 +4,8 @@ const {
   checkWikipediaAPI,
   getCoords,
   checkYelp,
-  checkWolfram,
-} = require("api-calls");
+  checkWolfram
+} = require("./api-calls");
 
 const simpleTaskCheck = (taskString) => {
   //Going to lowercase the entie string to make for easy checking.
@@ -23,14 +23,14 @@ const simpleTaskCheck = (taskString) => {
     lowerCaseTask.includes('restaurant') ||
     lowerCaseTask.includes('cafe')
   ) {
-    category = "food";
+    category = "eat";
   } else if (
     lowerCaseTask.includes("watch") ||
     lowerCaseTask.includes("movie") ||
     lowerCaseTask.includes("film") ||
     lowerCaseTask.includes("tv")
   ) {
-    category = "film";
+    category = "watch";
   } else if (
     lowerCaseTask.includes("read") ||
     lowerCaseTask.includes("book") ||
@@ -38,19 +38,19 @@ const simpleTaskCheck = (taskString) => {
     lowerCaseTask.includes('novel') ||
     lowerCaseTask.includes('textbooks')
   ) {
-    category = "book";
+    category = "read";
   } else if (
     lowerCaseTask.includes("buy") ||
     lowerCaseTask.includes("store") ||
     lowerCaseTask.includes("retail") ||
     lowerCaseTask.includes('grocer')
   ) {
-    category = "product";
+    category = "buy";
   }
   return category;
 };
 
-const categoryDecision = (taskString) => {
+const categoryDecision = (taskString, city) => {
   //NEED TO IMPLEMENT OTHER ARGUMENT WHICH IS CITY FOR YELP CHECK
   //Check obvious keywords
   //If obvious keywords fail, start calling APIS.
@@ -63,24 +63,24 @@ const categoryDecision = (taskString) => {
     return checkWolfram(taskString).then((response) => {
       if (response.includes("Book")) {
         //add to Book
-        category = "food";
+        category = "eat";
         return category;
       } else if (
         response.includes("Movie") ||
         response.includes("TelevisionProgram")
       ) {
-        category = "film";
+        category = "watch";
         return category;
       } else if (
         response.includes("ConsumerPTE") ||
         response.includes("Invention")
       ) {
         //Add to Product
-        category = "product";
+        category = "buy";
         return category;
       } else if (response.includes("RetailLocation")) {
         //Add to Eat
-        category = "food";
+        category = "eat";
         return category;
       } else {
         // Cannot categorize - Lets try DuckDuckGo
@@ -90,9 +90,9 @@ const categoryDecision = (taskString) => {
             category = simpleTaskCheck(responseDDG);
             return category;
           } else {
-            return checkYelp(taskString).then((responseYelp) => {
+            return checkYelp(taskString, city).then((responseYelp) => {
               if (responseYelp) {
-                category = "food";
+                category = "eat";
                 return category;
               } else {
                 return null;
@@ -104,3 +104,5 @@ const categoryDecision = (taskString) => {
     });
   }
 };
+
+module.exports = {categoryDecision}
