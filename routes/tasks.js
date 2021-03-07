@@ -43,6 +43,49 @@ module.exports = (db) => {
         res.send(e)
       })
   })
+
+  router.put("/:taskID", (req,res) => {
+    const userID = req.session.user_id
+    if (!userID) {
+      res.status(401).send("Not logged in");
+      return
+    }
+
+    const category = req.body.category;
+    const description = req.body.text_description;
+    const taskID = req.params.taskID;
+
+    updateTask(userID,category,description,taskID, db)
+      .then( task => {
+        console.log(task)
+        res.send(task)})
+      .catch(e => {
+        console.error(e);
+        res.send(e)
+      })
+
+  })
+
+  router.delete("/:taskID", (req,res) => {
+    const userID = req.session.user_id
+    if (!userID) {
+      res.status(401).send("Not logged in");
+      return
+    }
+
+    const taskID = req.params.taskID;
+
+    deleteTask(userID, taskID, db)
+      .then( task => {
+        console.log(task)
+        res.send(task)
+      })
+      .catch(e => {
+        console.error(e);
+        res.send(e)
+      })
+
+  })
   return router;
 };
 
@@ -65,7 +108,7 @@ const insertUserTask = function(userid, description, db) {
 
   let query = `INSERT INTO tasks (user_id, category, description, creation_date)
   VALUES ($1,$2,$3,$4)
-  RETURNING *`
+  RETURNING *;`
 
   const values = [userid, 'catFunction', description, date]
 
@@ -74,4 +117,35 @@ const insertUserTask = function(userid, description, db) {
     .catch(err => {
       console.error('query error', err.stack);
    });
+}
+
+const updateTask = function(userid, category, description, taskID, db) {
+
+  let query = `UPDATE tasks SET category = $1,
+  description = $2
+  WHERE user_id = $3 AND id = $4
+  RETURNING *;`
+
+  const values = [category, description, userid, taskID]
+
+  return db.query(query, values)
+    .then (
+      res => res.rows[0])
+    .catch(err => {
+      console.error('query error', err.stack);
+    })
+}
+
+const deleteTask = function(userID, taskID, db) {
+  let query = `DELETE FROM tasks
+  WHERE user_id = $1 AND id = $2`
+
+  const values = [userID, taskID]
+  return db.query(query,values)
+    .then (
+      res => res.rows[0]
+    )
+    .catch(err => {
+      console.error('query error', err.stack);
+    })
 }

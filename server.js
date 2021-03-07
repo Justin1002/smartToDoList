@@ -10,7 +10,7 @@ const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 const cookieSession = require('cookie-session');
-
+const methodOverride = require("method-override");
 
 
 // PG database client/connection setup
@@ -39,6 +39,8 @@ name: 'session',
 keys:['key1','key2'],
 maxAge: 24 * 60 * 60 * 1000
 }));
+
+app.use(methodOverride('_method'))
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
