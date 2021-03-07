@@ -19,7 +19,9 @@ const simpleTaskCheck = (taskString) => {
     lowerCaseTask.includes("meat") ||
     lowerCaseTask.includes("vegetable") ||
     lowerCaseTask.includes("fruit") ||
-    lowerCaseTask.includes("dairy")
+    lowerCaseTask.includes("dairy") ||
+    lowerCaseTask.includes('restaurant') ||
+    lowerCaseTask.includes('cafe')
   ) {
     category = "food";
   } else if (
@@ -40,7 +42,8 @@ const simpleTaskCheck = (taskString) => {
   } else if (
     lowerCaseTask.includes("buy") ||
     lowerCaseTask.includes("store") ||
-    lowerCaseTask.includes("retail")
+    lowerCaseTask.includes("retail") ||
+    lowerCaseTask.includes('groceries')
   ) {
     category = "product";
   }
