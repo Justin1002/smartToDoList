@@ -24,6 +24,11 @@ header div img{
 	/* margin: 20px; */
 }
 
+header button {
+	border: none;
+	box-shadow: none;
+}
+
 button {
 	cursor: pointer;
 	box-shadow: 3px 3px 0px 0px black;
