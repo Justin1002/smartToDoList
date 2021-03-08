@@ -11,6 +11,7 @@
 
 	<script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
 	<script type="text/javascript" src="/scripts/app.js"></script>
+	<script type="text/javascript" src="/scripts/new-task.js"></script>
 
 	<script src="https://kit.fontawesome.com/fca2dbd734.js" crossorigin="anonymous"></script>
 </head>
@@ -34,11 +35,25 @@
 			<button>Other</button>
 			<button><i class="fas fa-check-square"></i></button>
 		</div>
-		<form id="task-form" method="POST" action="/tasks/">
-			<div>
-				<button type="submit">Add a new task</button>
+
+		<!-- Open The Modal -->
+		<button id="new-task">Add a new task</button>
+
+		<!-- The Modal -->
+		<div id="new-task-popup" class="modal">
+
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<form id="task-form" method="POST" action="/tasks/">
+					<div>
+						<textarea name="text" id="tweet-text"></textarea>
+						<button type="submit">Submit</button>
+					</div>
+				</form>
 			</div>
-		</form>
+		</div>
+
 		<section id="tasks-container">
 			<div class="category">
 				<h2>To watch:</h2>
