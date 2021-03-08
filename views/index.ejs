@@ -1,17 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Home Page</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+<head>
+	<title>Home Page</title>
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
+	<link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+	<link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+	<link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+	<link rel="stylesheet" href="/styles/main.css" type="text/css" />
 
-  <body>
-    <h1>Hello World!</h1>
-  </body>
+	<script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+	<script type="text/javascript" src="/scripts/app.js"></script>
+	<script type="text/javascript" src="/scripts/new-task.js"></script>
+	<script type="text/javascript" src="/scripts/edit-task.js"></script>
+
+
+	<script src="https://kit.fontawesome.com/fca2dbd734.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<header>
+		<i class="fas fa-check-circle"></i>
+		<div>
+			<h1>Kaylin</h1>
+			<button><i class="fas fa-sign-out-alt"></i></button>
+		</div>
+	</header>
+
+	<main>
+		<div class="button-group">
+			<button>All</button>
+			<button><i class="fas fa-tv"></i></button>
+			<button><i class="fas fa-utensils"></i></button>
+			<button><i class="fas fa-book"></i></button>
+			<button><i class="fas fa-shopping-cart"></i></button>
+			<button>Other</button>
+			<button><i class="fas fa-check-square"></i></button>
+		</div>
+
+		<!-- Open The Modal -->
+		<button id="new-task">Add a new task</button>
+
+		<!-- The Modal -->
+		<div id="new-task-popup" class="modal">
+
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<form id="new-task-form" method="POST" action="/tasks/">
+					<div>
+						<textarea name="text"></textarea>
+						<button type="submit">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<section id="tasks-container">
+			<div class="category">
+				<h2>To watch:</h2>
+				<div class="task">
+					<p>Task 1</p>
+					<div class="task-buttons">
+						<!-- <button><i class="far fa-square"></i></button> -->
+						<button><i class="far fa-check-square"></i></button>
+						<button><i class="fas fa-trash-alt"></i></button>
+						<!-- Open The Modal -->
+						<button id="edit-task"><i class="fas fa-pencil-alt"></i></button>
+					</div>
+					<!-- The Modal -->
+					<div id="edit-task-popup" class="modal">
+
+						<!-- Modal content -->
+						<div class="modal-content">
+							<span class="close">&times;</span>
+							<form id="edit-task-form" method="POST" action="/tasks/:id">
+								<div>
+									<label for="category">Category:</label>
+									<select id="categories" name="categories">
+										<option value="Uncategorized">Uncategorized</option>
+										<option value="To Watch">To Watch</option>
+										<option value="To Eat">To Eat</option>
+										<option value="To Read">To Read</option>
+										<option value="To Buy">To Buy</option>
+									</select>
+									<textarea name="text" placeholder="New Description"></textarea>
+									<button type="submit">Submit</button>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+				<div class="task">
+					<p>Task 2</p>
+					<div class="task-buttons">
+						<!-- <button><i class="far fa-square"></i></button> -->
+						<button><i class="far fa-check-square"></i></button>
+						<button><i class="fas fa-trash-alt"></i></button>
+						<button><i class="fas fa-pencil-alt"></i></button>
+					</div>
+				</div>
+				<div class="task">
+					<p>Task 3</p>
+					<div class="task-buttons">
+						<!-- <button><i class="far fa-square"></i></button> -->
+						<button><i class="far fa-check-square"></i></button>
+						<button><i class="fas fa-trash-alt"></i></button>
+						<button><i class="fas fa-pencil-alt"></i></button>
+					</div>
+				</div>
+
+			</div>
+			<div class="category">
+				<h2>To eat:</h2>
+				<p>Task 1</p>
+				<p>Task 2</p>
+				<p>Task 3</p>
+			</div>
+			<div class="category">
+				<h2>To read:</h2>
+				<p>Task 1</p>
+				<p>Task 2</p>
+				<p>Task 3</p>
+			</div>
+			<div class="category">
+				<h2>To buy:</h2>
+				<p>Task 1</p>
+				<p>Task 2</p>
+				<p>Task 3</p>
+			</div>
+			<div class="category">
+				<h2>Uncategorized:</h2>
+				<p>Task 1</p>
+				<p>Task 2</p>
+				<p>Task 3</p>
+			</div>
+		</section>
+	</main>
+</body>
+
 </html>
