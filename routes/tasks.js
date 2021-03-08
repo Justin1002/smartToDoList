@@ -76,7 +76,6 @@ module.exports = (db) => {
         console.error(e);
         res.send(e)
       })
-
   })
 
   router.delete("/:taskID", (req,res) => {
