@@ -59,7 +59,7 @@ button {
 }
 
 .button-group button i {
-	font-size: min(8vw, 40px);
+	font-size: #{"min(8vw, 40px)"};
 }
 
 .button-group button:not(:last-child) {
