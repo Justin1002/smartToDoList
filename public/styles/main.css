@@ -36,7 +36,7 @@ header button {
 
 button {
 	cursor: pointer;
-	box-shadow: 3px 3px 0px 0px black;
+	/* box-shadow: 3px 3px 0px 0px black; */
 }
 
 .button-group {
@@ -51,6 +51,7 @@ button {
 	height: 70px;
 	font-size: 1em;
 	float: left;
+	box-shadow: 3px 3px 0px 0px black;
 }
 
 .button-group button:hover {
@@ -67,13 +68,14 @@ button {
 
 #new-task {
 	border: 1px solid black;
+	box-shadow: 3px 3px 0px 0px black;
 	padding: 5px;
 	margin: 15px 0px 15px 0px;
 	width: fit-content;
 }
 
 #new-task:hover {
-	background-color: cornflowerblue;
+	background-color: #aaa;
 }
 
 /* The Modal (background) */
@@ -125,6 +127,9 @@ button {
   cursor: pointer;
 }
 
+select {
+	margin: 5px 0px 5px 0px;
+}
 
 main {
 	display: flex;
@@ -148,7 +153,7 @@ section h2 {
 	margin: 0px 0px 5px 0px;
 }
 
-section div div {
+.task {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -158,14 +163,8 @@ section p {
 	margin: 0px 0px 5px 0px;
 }
 
-#tasks-container button {
+#tasks-container .task-buttons button {
 	border: none;
-	box-shadow: none;
-}
-
-#tasks-container img {
-	height: 15px;
-	width: 15px;
 }
 
 #tasks-container i {
