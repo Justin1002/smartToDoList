@@ -1,76 +1,93 @@
 $(document).ready(function() {
-
-    renderTasks();
     // Get the modal
-    let modal = document.getElementById("edit-task-popup");
+    let modal = document.getElementById("new-task-popup");
 
     // Get the button that opens the modal
-    let button = document.getElementById("edit-task");
+    let button = document.getElementById("new-task");
 
     // Get the <span> element that closes the modal
-    let span = document.getElementsByClassName("close")[1];
+    let span = document.getElementsByClassName("close")[0];
 
     // When the user clicks on the button, open the modal
     button.onclick = function() {
-      modal.style.display = "block";
+      $('#new-task-popup').toggleClass('show')
     };
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
-      modal.style.display = "none";
+      $('#new-task-popup').toggleClass('show')
     };
+
+    const submitTaskForm = $('#new-task-form')
+
+    submitTaskForm.on('submit', function(event) {
+      event.preventDefault();
+      console.log('click')
+      const input = $(this);
+      submitTask(input);
+    })
+    // Get the modal
+    // let modal = document.getElementById("edit-task-popup");
+
+    // // Get the button that opens the modal
+    // let button = document.getElementById("edit-task");
+
+    // // Get the <span> element that closes the modal
+    // let span = document.getElementsByClassName("close")[1];
+
+    // // When the user clicks on the button, open the modal
+    // button.onclick = function() {
+    //   modal.style.display = "block";
+    // };
+
+    // // When the user clicks on <span> (x), close the modal
+    // span.onclick = function() {
+    //   modal.style.display = "none";
+    // };
+
+    loadTask();
 });
 
 const createTaskElement = (taskObj) => {
-  const newTask = $('<li></li>');
-  newTask.html(`
+  const $newTask =`
   <div class="task">
     <p>${taskObj.description}</p>
     <div class="task-buttons">
-      <!-- <button><i class="far fa-square"></i></button> -->
-      <button><i class="far fa-check-square"></i></button>
-      <button><i class="fas fa-trash-alt"></i></button>
-      <!-- Open The Modal -->
+      <button class='completion'><i class="far fa-check-square"></i></button>
+      <button class='delete'><i class="fas fa-trash-alt"></i></button>
       <button id="edit-task"><i class="fas fa-pencil-alt"></i></button>
     </div>
-    <!-- The Modal -->
-    <div id="edit-task-popup" class="modal">
-
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <form id="edit-task-form" method="POST" action="/tasks/:id">
-          <div>
-            <label for="category">Category:</label>
-            <select id="categories" name="categories">
-              <option value="Uncategorized">Uncategorized</option>
-              <option value="To Watch">To Watch</option>
-              <option value="To Eat">To Eat</option>
-              <option value="To Read">To Read</option>
-              <option value="To Buy">To Buy</option>
-            </select>
-            <textarea name="text" placeholder="New Description"></textarea>
-            <button type="submit">Submit</button>
-          </div>
-        </form>
-      </div>
-    </div>
   </div>
-  `)
-  return newTask;
+  `
+  return $newTask;
 };
 
 const renderTasks = () => {
-  $("#tasks-container").empty();
-  const url = "/task";
+  $(".watch-tasks").empty();
+  $(".eat-tasks").empty();
+  $(".read-tasks").empty();
+  $(".buy-tasks").empty();
+  $(".null-tasks").empty();
+
   $.get('/tasks')
-    .then((tasks => {
-      for (const task in tasks) {
-        const task = tasks[task.id];
-        createTaskElement(task);
-        $('#tasks-container').append(task);
+    .then(data =>{
+      for (const taskID in data) {
+        const task = data[taskID]
+        const newTask = createTaskElement(task);
+        if(task.category === 'watch'){
+          $('.category-watch').append(newTask);
+        } else if (task.category === 'eat') {
+          $('.category-eat').append(newTask);
+        } else if (task.category === 'read') {
+          $('.category-read').append(newTask);
+        } else if (task.category === 'buy') {
+          $('.category-buy').append(newTask);
+        } else {
+          $('.category-null').append(newTask);
+        }
       }
-    }))
+    })
+
 };
 
 // const submitNewTask = () => {
@@ -90,24 +107,62 @@ const loadTask = () => {
   $('#new-task-form').submit((event) => {
     event.preventDefault();
     const url = "/task";
-    let $formSubmit = $("#text").val();
+    let $formSubmit = $ ("#text_description").val();
     $formSubmit = $formSubmit.trim();
     $.get(url).then((req, response) => {
-      renderTweets(req);
+      console.log(req);
+      renderTasks();
       $("#text").val(''); // clears the textarea
     });
   });
 };
 
+
+// const loadTweets = () => {
+//   $.get('/tasks/', function(data) {
+//     renderTweets(data);
+//   });
+// };
+
+
+// const submitTask = function(input) {
+//   const textObj = input.find('#task-description');
+//   const serializedText = textObj.serialize()
+//   const modal = $('#new-task-popup')
+//   $.ajax({
+//     type: "POST",
+//     url: '/tasks/',
+//     data: serializedText
+//   })
+//     .done(modal.toggleClass('show'))
+//   //renderTasksElements
+// }
+
 const submitTask = function(input) {
   const textObj = input.find('#task-description');
   const serializedText = textObj.serialize()
+  const textValue = textObj.val()
+  const error = input.find('.error')
+  const errorIcon = `<i class="fas fa-exclamation-triangle"></i>`
+  error.html("");
+
+  if(textValue === "" || textValue === null) {
+    error.append(`${errorIcon} Error: task description cannot be empty`);
+    textObj.focus()
+  }
+  else {
   const modal = $('#new-task-popup')
   $.ajax({
     type: "POST",
     url: '/tasks/',
     data: serializedText
   })
-    .done(modal.toggleClass('show'))
-  //renderTasksElements
+    .done(() => {
+      (modal.toggleClass('show'))
+      renderTasks()
+    })
+  }
 }
+
+renderTasks();
+// renderTasks();
