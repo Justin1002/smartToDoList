@@ -47,10 +47,11 @@
 			<!-- Modal content -->
 			<div class="modal-content">
 				<span class="close">&times;</span>
-				<form id="new-task-form" method="POST" action="/tasks/">
+				<form id="new-task-form">
 					<div>
-						<textarea name="text"></textarea>
-						<button type="submit">Submit</button>
+						<textarea name="text_description" id="task-description"></textarea>
+						<button type="submit" class ='submit-task'>Submit</button>
+            <div class="error"></div>
 					</div>
 				</form>
 			</div>
@@ -63,13 +64,13 @@
 					<p>Task 1</p>
 					<div class="task-buttons">
 						<!-- <button><i class="far fa-square"></i></button> -->
-						<button><i class="far fa-check-square"></i></button>
-						<button><i class="fas fa-trash-alt"></i></button>
+						<button class="completion"><i class="far fa-check-square"></i></button>
+						<button class="delete"><i class="fas fa-trash-alt"></i></button>
 						<!-- Open The Modal -->
-						<button id="edit-task"><i class="fas fa-pencil-alt"></i></button>
+						<button class="edit-task"><i class="fas fa-pencil-alt"></i></button>
 					</div>
 					<!-- The Modal -->
-					<div id="edit-task-popup" class="modal">
+					<div class="edit-task-popup modal">
 
 						<!-- Modal content -->
 						<div class="modal-content">

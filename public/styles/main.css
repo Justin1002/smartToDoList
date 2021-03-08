@@ -181,3 +181,7 @@ section p {
 textarea {
   resize: none;
 }
+
+.show {
+  display: block;
+}
