@@ -35,10 +35,14 @@ module.exports = (db) => {
 
     getCity(userID, db)
       .then(
-        res => categoryDecision(description, res)
+        res =>{ console.log(res)
+         return categoryDecision(description, res.location)
+        }
       )
       .then(
-        res => insertUserTask(userID, description, res, db)
+        res => { console.log(res)
+          return insertUserTask(userID, description, res, db)
+        }
       )
       .then (
         task => {
@@ -162,7 +166,7 @@ const deleteTask = function(userID, taskID, db) {
 
 const getCity = function(userID, db) {
   let query = `SELECT location FROM users
-  WHERE user_id = $1`
+  WHERE users.id = $1`
   let values = [userID]
   return db.query(query,values)
     .then (
