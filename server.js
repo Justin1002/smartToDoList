@@ -40,7 +40,7 @@ keys:['key1','key2'],
 maxAge: 24 * 60 * 60 * 1000
 }));
 
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -51,7 +51,7 @@ const logoutRoutes = require("./routes/logout");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/users", usersRoutes(db));
-app.use("/login", loginRoutes());
+app.use("/login", loginRoutes(db));
 app.use("/tasks", taskRoutes(db));
 app.use("/logout", logoutRoutes());
 // Note: mount other resources here, using the same pattern above
