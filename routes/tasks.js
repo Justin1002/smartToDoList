@@ -7,8 +7,8 @@
 const express = require('express');
 const router  = express.Router();
 const { categoryDecision } = require('../category-decision')
-module.exports = (db) => {
 
+module.exports = (db) => {
   router.get("/", (req, res) => {
     const userID = req.session.user_id
     if (!userID) {
