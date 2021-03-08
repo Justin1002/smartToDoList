@@ -26,7 +26,6 @@ $(document).ready(function() {
     const input = $(this);
     submitTask(input);
   })
-
 });
 
 
