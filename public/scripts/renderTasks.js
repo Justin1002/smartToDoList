@@ -18,24 +18,65 @@ $(document).ready(function() {
       $('#new-task-popup').toggleClass('show')
     };
 
-    // Get the modal
-    // let modal = document.getElementById("edit-task-popup");
+    $('.watch-category-btn').on('click', () => {
+      $(".category-watch").show()
+      $(".category-eat").hide()
+      $(".category-read").hide()
+      $(".category-buy").hide()
+      $(".category-null").hide()
+    });
 
-    // // Get the button that opens the modal
-    // let button = document.getElementById("edit-task");
+    $('.all-category-btn').on('click', () => {
+      $(".category-watch").show()
+      $(".category-eat").show()
+      $(".category-read").show()
+      $(".category-buy").show()
+      $(".category-null").show()
+    });
 
-    // // Get the <span> element that closes the modal
-    // let span = document.getElementsByClassName("close")[1];
+    $('.eat-category-btn').on('click', () => {
+      $(".category-watch").hide()
+      $(".category-eat").show()
+      $(".category-read").hide()
+      $(".category-buy").hide()
+      $(".category-null").hide()
+    });
 
-    // // When the user clicks on the button, open the modal
-    // button.onclick = function() {
-    //   modal.style.display = "block";
-    // };
+    $('.read-category-btn').on('click', () => {
+      $(".category-watch").hide()
+      $(".category-eat").hide()
+      $(".category-read").show()
+      $(".category-buy").hide()
+      $(".category-null").hide()
+    });
 
-    // // When the user clicks on <span> (x), close the modal
-    // span.onclick = function() {
-    //   modal.style.display = "none";
-    // };
+    $('.buy-category-btn').on('click', () => {
+      $(".category-watch").hide()
+      $(".category-eat").hide()
+      $(".category-read").hide()
+      $(".category-buy").show()
+      $(".category-null").hide()
+    });
+
+    $('.null-category-btn').on('click', () => {
+      $(".category-watch").hide()
+      $(".category-eat").hide()
+      $(".category-read").hide()
+      $(".category-buy").hide()
+      $(".category-null").show()
+    });
+
+    // to be implemented
+    // $('.complete-category-btn').on('click', () => {
+    //   $(".category-watch").hide()
+    //   $(".category-eat").hide()
+    //   $(".category-read").hide()
+    //   $(".category-buy").hide()
+    //   $(".category-null").hide()
+    // });
+
+
+
     renderTasks();
     submitEvent();
 });
@@ -54,17 +95,17 @@ const createTaskElement = (taskObj) => {
   return $newTask;
 };
 
-const clearTasks= () => {
-
-}
-
-const renderTasks = () => {
+const clearTasks = () => {
   $(".watch-tasks").empty();
   $(".eat-tasks").empty();
   $(".read-tasks").empty();
   $(".buy-tasks").empty();
   $(".null-tasks").empty();
+};
 
+
+const renderTasks = () => {
+  clearTasks();
   $.get('/tasks')
     .then(data =>{
       for (const taskID in data) {
@@ -86,19 +127,6 @@ const renderTasks = () => {
     })
 };
 
-// const submitNewTask = () => {
-//   $('#new-task-form').submit((event) => {
-//     event.preventDefault();
-//     const url = "/task";
-//     const $data = $("#text").val();
-//     const dataSent = { text: $data };
-//     $.post(url, dataSent).then((req, response) => {
-//       //NEED TO BE POSTED TO DB
-//       loadTasks(); // Ensures that Task gets posted
-//     });
-//   });
-// };
-
 const loadTask = () => {
   $('#new-task-form').submit((event) => {
     event.preventDefault();
@@ -111,19 +139,6 @@ const loadTask = () => {
     });
   });
 };
-
-// const submitTask = function(input) {
-//   const textObj = input.find('#task-description');
-//   const serializedText = textObj.serialize()
-//   const modal = $('#new-task-popup')
-//   $.ajax({
-//     type: "POST",
-//     url: '/tasks/',
-//     data: serializedText
-//   })
-//     .done(modal.toggleClass('show'))
-//   //renderTasksElements
-// }
 
 const submitEvent = () => {
   const submitTaskForm = $('#new-task-form')

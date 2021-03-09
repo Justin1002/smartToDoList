@@ -107,7 +107,8 @@ module.exports = (db) => {
 const getUserTasks = function(userid,db) {
   let query = `SELECT *
   FROM tasks
-  WHERE tasks.user_id = $1`
+  WHERE tasks.user_id = $1
+  ORDER BY tasks.creation_date ASC`
   const value = [userid]
   return db.query(query, value)
     .then(res => res.rows)
