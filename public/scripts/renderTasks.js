@@ -1,82 +1,43 @@
 $(document).ready(function() {
-    // Get the modal
-    let modal = document.getElementById("new-task-popup");
 
-    // Get the button that opens the modal
-    let button = document.getElementById("new-task");
-
-    // Get the <span> element that closes the modal
-    let span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on the button, open the modal
-    button.onclick = function() {
-      $('#new-task-popup').toggleClass('show')
-    };
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-      $('#new-task-popup').toggleClass('show')
-    };
-
+  submitModal()
     $('.watch-category-btn').on('click', () => {
-      $(".category-watch").show()
-      $(".category-eat").hide()
-      $(".category-read").hide()
-      $(".category-buy").hide()
-      $(".category-null").hide()
+      categoryShow('watch');
     });
 
     $('.all-category-btn').on('click', () => {
-      $(".category-watch").show()
-      $(".category-eat").show()
-      $(".category-read").show()
-      $(".category-buy").show()
-      $(".category-null").show()
+      categoryShow('all');
     });
 
     $('.eat-category-btn').on('click', () => {
-      $(".category-watch").hide()
-      $(".category-eat").show()
-      $(".category-read").hide()
-      $(".category-buy").hide()
-      $(".category-null").hide()
+      categoryShow('eat');
     });
 
     $('.read-category-btn').on('click', () => {
-      $(".category-watch").hide()
-      $(".category-eat").hide()
-      $(".category-read").show()
-      $(".category-buy").hide()
-      $(".category-null").hide()
+      categoryShow('read');
     });
 
     $('.buy-category-btn').on('click', () => {
-      $(".category-watch").hide()
-      $(".category-eat").hide()
-      $(".category-read").hide()
-      $(".category-buy").show()
-      $(".category-null").hide()
+      categoryShow('buy');
     });
 
     $('.null-category-btn').on('click', () => {
-      $(".category-watch").hide()
-      $(".category-eat").hide()
-      $(".category-read").hide()
-      $(".category-buy").hide()
-      $(".category-null").show()
+      categoryShow('null');
     });
-
+    completeTask();
+    updateTask();
     deleteTask();
     renderTasks();
     submitEvent();
 });
 
 const createTaskElement = (taskObj) => {
+
   const $newTask =`
-  <div class="task" id=${taskObj.id}>
+  <div class="task ${taskObj.category}" id=${taskObj.id}>
     <p>${taskObj.description}</p>
     <div class="task-buttons">
-      <button class='completion' type='submit'><i class="far fa-check-square"></i></button>
+      <button class='completion' value=${taskObj.completed} type='submit'><i class="far fa-check-square"></i></button>
       <button class='delete' type='submit'><i class="fas fa-trash-alt"></i></button>
       <button class='edit-task' type='submit'><i class="fas fa-pencil-alt"></i></button>
     </div>
@@ -85,10 +46,25 @@ const createTaskElement = (taskObj) => {
   return $newTask;
 };
 
+const completeTask = () => {
+  $('#tasks-container').on('click', '.completion', function() {
+    console.log('clicked')
+    const $completeButton = $(this);
+    const taskID = $completeButton.closest('.task').attr('id');
+    // $.ajax({
+    //   type: 'PUT',
+    //   url: `/tasks/${taskID}`,
+    // })
+    //   .done(() => {
+    //     console.log('Completed Task Successful');
+    //     renderTasks();
+    //   })
+  })
+};
+
 const deleteTask = () => {
   $('#tasks-container').on('click', '.delete', function() {
-    console.log('click');
-    const $deleteButton = $('.delete');
+    const $deleteButton = $(this);
     const taskID = $deleteButton.closest('.task').attr('id');
     $.ajax({
       type: 'DELETE',
@@ -99,6 +75,30 @@ const deleteTask = () => {
         renderTasks();
       })
   });
+}
+
+const updateTask = () => {
+  const submitEditForm = $('#edit-task-form')
+  submitEditForm.submit(function(event) {
+    event.preventDefault();
+    const modal = $('#edit-task-popup');
+    const taskID = $('body').data().taskID;
+    const textObj = $(this).find('#edit-task-description');
+    const serializeValue = $(this).serialize()
+
+    console.log(serializeValue);
+    $.ajax({
+      type: 'PUT',
+      url: `/tasks/${taskID}`,
+      data: serializeValue
+    })
+      .done(() => {
+        console.log('Put Successful');
+        (modal.toggleClass('show'))
+        textObj.val("")
+        renderTasks();
+      })
+    });
 }
 
 const clearTasks = () => {
@@ -181,3 +181,69 @@ const submitTask = function(input) {
     })
   }
 }
+
+const categoryShow = function(category) {
+  switch(category) {
+    case 'watch':
+      $(".category-watch").show()
+      $(".category-eat").hide()
+      $(".category-read").hide()
+      $(".category-buy").hide()
+      $(".category-null").hide()
+      break;
+    case 'eat':
+      $(".category-watch").hide()
+      $(".category-eat").show()
+      $(".category-read").hide()
+      $(".category-buy").hide()
+      $(".category-null").hide()
+      break;
+    case 'all':
+      $(".category-watch").show()
+      $(".category-eat").show()
+      $(".category-read").show()
+      $(".category-buy").show()
+      $(".category-null").show()
+      break;
+    case 'read':
+      $(".category-watch").hide()
+      $(".category-eat").hide()
+      $(".category-read").show()
+      $(".category-buy").hide()
+      $(".category-null").hide()
+      break;
+    case 'buy':
+      $(".category-watch").hide()
+      $(".category-eat").hide()
+      $(".category-read").hide()
+      $(".category-buy").show()
+      $(".category-null").hide()
+      break;
+    case 'null':
+      $(".category-watch").hide()
+      $(".category-eat").hide()
+      $(".category-read").hide()
+      $(".category-buy").hide()
+      $(".category-null").show()
+      break;
+  }
+}
+
+const submitModal = function() {
+  // Get the button that opens the modal
+  const button = document.getElementById("new-task");
+
+  // When the user clicks on the button, open the modal
+  button.onclick = function() {
+    $('#new-task-popup').toggleClass('show')
+    };
+
+  // Get the <span> element that closes the modal
+  const span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    $('#new-task-popup').toggleClass('show')
+  };
+}
+

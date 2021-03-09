@@ -187,3 +187,7 @@ textarea {
 .visibility {
 	visibility:hidden;
 }
+
+.completion[value=true]{
+  color: green
+}

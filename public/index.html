@@ -57,23 +57,24 @@
 			</div>
 		</div>
   	<!-- The Modal -->
-		<div class="edit-task-popup modal">
+		<div id="edit-task-popup" class= "modal">
 
 				<!-- Modal content -->
 			<div class="modal-content">
 				<span class="close">&times;</span>
-				<form id="edit-task-form" method="POST" action="/tasks/:id">
+				<form id="edit-task-form">
 					<div>
 							<label for="category">Category:</label>
-							<select id="categories" name="categories">
-								<option value="Uncategorized">Uncategorized</option>
-								<option value="To Watch">To Watch</option>
-								<option value="To Eat">To Eat</option>
-								<option value="To Read">To Read</option>
-								<option value="To Buy">To Buy</option>
+							<select class="category-select" name="category">
+								<option value="null">Uncategorized</option>
+								<option value="watch">To Watch</option>
+								<option value="eat">To Eat</option>
+								<option value="read">To Read</option>
+								<option value="buy">To Buy</option>
 							</select>
-							<textarea name="text" placeholder="New Description"></textarea>
+							<textarea name="text_description" id='edit-task-description' placeholder="New Description"></textarea>
 							<button type="submit">Submit</button>
+              <div class="error"></div>
 					</div>
 				</form>
 			</div>

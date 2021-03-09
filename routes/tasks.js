@@ -78,6 +78,22 @@ module.exports = (db) => {
       })
   })
 
+  //completed PUT
+  router.put("/:taskID", (req,res) => {
+    const userID = req.session.user_id
+    if (!userID) {
+      res.status(401).send("Not logged in");
+      return
+    }
+    const completed = req.body.completed;
+    console.log(completed);
+    if(completed){
+      //QUERY TO SET TO FALSE
+    } else {
+      //QUERY SET TO TRUE;
+    }
+  });
+
   router.delete("/:taskID", (req,res) => {
     const userID = req.session.user_id
     if (!userID) {
@@ -135,14 +151,22 @@ const insertUserTask = function(userid, description, category, db) {
 
 const updateTask = function(userid, category, description, taskID, db) {
 
-  let query = `UPDATE tasks SET category = $1,
-  description = $2
-  WHERE user_id = $3 AND id = $4
-  RETURNING *;`
+  let query = `UPDATE tasks SET category = $1`
+  // description = $2
+  // WHERE user_id = $3 AND id = $4
+  // RETURNING *;`
+  const queryParams = [category];
+  if (description) {
+    queryParams.push(description)
+    query += `, description = $${queryParams.length}`
+  }
+    queryParams.push(userid)
+    query += ` WHERE user_id = $${queryParams.length}`
 
-  const values = [category, description, userid, taskID]
+    queryParams.push(taskID)
+    query += ` AND id = $${queryParams.length} RETURNING *;`
 
-  return db.query(query, values)
+  return db.query(query, queryParams)
     .then (
       res => res.rows[0])
     .catch(err => {

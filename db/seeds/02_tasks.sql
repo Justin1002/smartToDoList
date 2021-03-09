@@ -6,6 +6,6 @@ INSERT INTO tasks (user_id, category, description, completed, creation_date, com
 (2,'buy', 'Purchase haircutter', FALSE, NULL, NULL),
 (2,'read', 'Read people', FALSE, NULL, NULL),
 (2,'watch','Avatar the last air bender', FALSE, NULL, NULL),
-(2,'eat','Eat at mcdonalds', FALSE, NULL, NULL);
-
+(2,'eat','Eat at mcdonalds', FALSE, NULL, NULL),
+(1,'buy','something good', TRUE, NULL, NULL);
 
