@@ -13,29 +13,23 @@
 	<script type="text/javascript" src="/scripts/app.js"></script>
 	<script type="text/javascript" src="/scripts/new-task.js"></script>
 	<script type="text/javascript" src="/scripts/edit-task.js"></script>
-  <script type="text/javascript" src="/scripts/renderTasks.js"></script>
+	<script type="text/javascript" src="/scripts/renderTasks.js"></script>
 
 	<script src="https://kit.fontawesome.com/fca2dbd734.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-	<header>
-		<i class="fas fa-check-circle"></i>
-		<div>
-			<h1>Kaylin</h1>
-			<button><i class="fas fa-sign-out-alt"></i></button>
-		</div>
-	</header>
+	<header id="header"></header>
 
 	<main>
 		<div class="button-group">
-			<button class= 'all-category-btn'>All</button>
-			<button class= 'watch-category-btn' ><i class="fas fa-tv"></i></button>
-			<button class= 'eat-category-btn'><i class="fas fa-utensils"></i></button>
-			<button class= 'read-category-btn'><i class="fas fa-book"></i></button>
-			<button class= 'buy-category-btn'><i class="fas fa-shopping-cart"></i></button>
-			<button class= 'null-category-btn'>Other</button>
-			<button class= 'completed-category-btn'><i class="fas fa-check-square"></i></button>
+			<button class='all-category-btn'>All</button>
+			<button class='watch-category-btn'><i class="fas fa-tv"></i></button>
+			<button class='eat-category-btn'><i class="fas fa-utensils"></i></button>
+			<button class='read-category-btn'><i class="fas fa-book"></i></button>
+			<button class='buy-category-btn'><i class="fas fa-shopping-cart"></i></button>
+			<button class='null-category-btn'>Other</button>
+			<button class='completed-category-btn'><i class="fas fa-check-square"></i></button>
 		</div>
 
 		<!-- Open The Modal -->
@@ -50,31 +44,31 @@
 				<form id="new-task-form">
 					<div>
 						<textarea name="text_description" id="task-description"></textarea>
-						<button type="submit" class ='submit-task'>Submit</button>
-            <div class="error"></div>
+						<button type="submit" class='submit-task'>Submit</button>
+						<div class="error"></div>
 					</div>
 				</form>
 			</div>
 		</div>
-  	<!-- The Modal -->
-		<div id="edit-task-popup" class= "modal">
+		<!-- The Modal -->
+		<div id="edit-task-popup" class="modal">
 
-				<!-- Modal content -->
+			<!-- Modal content -->
 			<div class="modal-content">
 				<span class="close">&times;</span>
 				<form id="edit-task-form">
 					<div>
-							<label for="category">Category:</label>
-							<select class="category-select" name="category">
-								<option value="null">Uncategorized</option>
-								<option value="watch">To Watch</option>
-								<option value="eat">To Eat</option>
-								<option value="read">To Read</option>
-								<option value="buy">To Buy</option>
-							</select>
-							<textarea name="text_description" id='edit-task-description' placeholder="New Description"></textarea>
-							<button type="submit">Submit</button>
-              <div class="error"></div>
+						<label for="category">Category:</label>
+						<select class="category-select" name="category">
+							<option value="null">Uncategorized</option>
+							<option value="watch">To Watch</option>
+							<option value="eat">To Eat</option>
+							<option value="read">To Read</option>
+							<option value="buy">To Buy</option>
+						</select>
+						<textarea name="text_description" id='edit-task-description' placeholder="New Description"></textarea>
+						<button type="submit">Submit</button>
+						<div class="error"></div>
 					</div>
 				</form>
 			</div>
@@ -83,23 +77,23 @@
 
 		<section id="tasks-container">
 			<div class="category-watch">
-        <h2 class='h2-watch'>To Watch:</h2>
+				<h2 class='h2-watch'>To Watch:</h2>
 				<div class=watch-tasks></div>
 			</div>
 			<div class="category-eat">
-        <h2 class='h2-eat'>To Eat:</h2>
+				<h2 class='h2-eat'>To Eat:</h2>
 				<div class=eat-tasks></div>
 			</div>
 			<div class="category-read">
-        <h2 class='h2-read'>To Read:</h2>
+				<h2 class='h2-read'>To Read:</h2>
 				<div class=read-tasks></div>
 			</div>
 			<div class="category-buy">
-        <h2 class='h2-buy'>To Buy:</h2>
+				<h2 class='h2-buy'>To Buy:</h2>
 				<div class=buy-tasks></div>
 			</div>
 			<div class="category-null">
-        <h2 class='h2-null'>Uncategorized:</h2>
+				<h2 class='h2-null'>Uncategorized:</h2>
 				<div class=null-tasks></div>
 			</div>
 		</section>
