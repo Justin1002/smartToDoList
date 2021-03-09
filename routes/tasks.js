@@ -68,8 +68,8 @@ module.exports = (db) => {
     const description = req.body.text_description;
     const taskID = req.params.taskID;
     const completion = req.body.completed;
-    console.log('test',completion)
-    updateTask(userID,category,description, completion, taskID, db)
+
+    updateTask(userID ,category, description, completion, taskID, db)
       .then( task => {
         console.log(task)
         res.send(task)})
@@ -143,7 +143,7 @@ const updateTask = function(userid, category, description, completion, taskID, d
   const queryParams = [];
 
   if (category) {
-    query.Params.push(category)
+    queryParams.push(category)
     query += ` category = $${queryParams.length}`
   }
 

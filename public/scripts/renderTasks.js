@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
   submitModal()
+
     $('.watch-category-btn').on('click', () => {
       renderTasks();
       categoryShow('watch');
@@ -83,7 +84,7 @@ const completeTask = () => {
     })
       .done(() => {
         console.log('Completed Task Successful');
-        $('.completed-category-btn').trigger('click');
+        $completeButton.closest('.task').remove()
       })
   })
 };
@@ -98,7 +99,7 @@ const deleteTask = () => {
     })
       .done(() => {
         console.log('Delete Successful');
-        renderTasks();
+        $deleteButton.closest('.task').remove()
       })
   });
 }
@@ -322,4 +323,3 @@ const submitModal = function() {
     $('#new-task-popup').toggleClass('show')
   };
 }
-

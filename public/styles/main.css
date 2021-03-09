@@ -34,6 +34,21 @@ header button {
   background-color: cornflowerblue;
 }
 
+header #logout-button {
+  border: none;
+  box-shadow: none;
+  background-color: cornflowerblue;
+}
+
+header #login-button {
+  font-size: 30px;
+  background-color: cornflowerblue;
+  border: 2px solid black;
+  box-shadow: none;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 button {
   cursor: pointer;
   /* box-shadow: 3px 3px 0px 0px black; */
