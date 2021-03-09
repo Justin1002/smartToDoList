@@ -83,7 +83,7 @@ const completeTask = () => {
     })
       .done(() => {
         console.log('Completed Task Successful');
-        renderTasks();
+        $('.completed-category-btn').trigger('click');
       })
   })
 };
