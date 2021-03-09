@@ -1,0 +1,48 @@
+$(document).ready(function() {
+
+  getUser()
+    .then(userData => {
+      appendMain(userData);
+    })
+});
+
+
+
+
+
+
+//See if user is logged in
+//-- If logged in append to main div class = "button group"
+// tasks container
+
+
+//otherwise append to main login page
+//
+const appendMain = function(user) {
+  $main = $('main')
+  if (Object.keys(user).length > 0) {
+    $('#tasks-container').show();
+    $('.button-group').show();
+    $('#new-task').show();
+  }
+  else {
+    $('#tasks-container').hide();
+    $('.button-group').hide();
+    $('#new-task').hide();
+
+    $loginForm = `<form id="login-form">
+    <div>
+      <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+
+      <button type="submit">Login</button>
+      </div>
+    </div>
+  </form>`
+    $main.append($loginForm)
+  }
+}

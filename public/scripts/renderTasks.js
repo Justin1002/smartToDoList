@@ -3,7 +3,7 @@ $(document).ready(function() {
   submitModal()
 
     $('.watch-category-btn').on('click', () => {
-      renderTasks();
+      renderTasks()
       categoryShow('watch');
     });
 
@@ -323,3 +323,10 @@ const submitModal = function() {
     $('#new-task-popup').toggleClass('show')
   };
 }
+
+// // const noTasks = function(category) {
+// //   $('.no-task').remove()
+// //   if ($(`.${category}-tasks`).find(children().length === 0) {
+// //     $('#tasks-container').append("<p class='no-task'>You have no tasks here!</p>")
+// //   }
+// }

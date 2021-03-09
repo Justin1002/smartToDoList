@@ -12,17 +12,24 @@ const bcrypt = require('bcrypt');
 module.exports = (db) => {
   router.get("/", (req, res) => {
     const userID = req.session.user_id
+
+    if(userID) {
+
     db.query(`SELECT * FROM users WHERE id = $1;`,[userID])
       .then(data => {
         console.log(data)
-        const users = data.rows;
-        res.send({ users });
+        const users = data.rows[0];
+        res.send({id: users.id, name: users.name, email: users.email, location: users.location});
       })
       .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
       });
+    }
+    else {
+      res.send({})
+    }
   });
 
   //registration route

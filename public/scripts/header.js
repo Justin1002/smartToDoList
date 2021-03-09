@@ -1,39 +1,61 @@
-// $(document).ready(function() {
-//   createHeaderDiv('');
-//   $('#login-button').click(function(event) {
-//     console.log('login button clicked');
-//     $.ajax({ method: "GET", url: "/login/1"})
-//       .then(function() {
-//         createHeaderDiv('Alice Le');
-//       });
-//   });
-//   $('#logout-button').click(function(event) {
-//     console.log('logout button clicked');
-//     $.ajax({ method: "GET", url: "/logout"})
-//       .then(function() {
-//         createHeaderDiv('');
-//       });
-//   });
+$(document).ready(function() {
+
+  getUser()
+    .then(userObj => {
+      console.log(userObj)
+      createHeaderDiv(userObj)
+    })
+
+});
+
+
+// createHeaderDiv('');
+// $('#login-button').click(function(event) {
+//   console.log('login button clicked');
+//   $.ajax({ method: "GET", url: "/login/1"})
+//     .then(function() {
+//       createHeaderDiv('Alice Le');
+//     });
+// });
+// $('#logout-button').click(function(event) {
+//   console.log('logout button clicked');
+//   $.ajax({ method: "GET", url: "/logout"})
+//     .then(function() {
+//       createHeaderDiv('');
+//     });
 // });
 
-// const createHeaderDiv  = (userName) => {
-//   $("#header").empty();
-//   const $logo = $(`<i class="fas fa-check-circle"></i>`);
-//   $('#header').append($logo);
-//   if (userName) {
-//     const $div = $(`
-// 			<div>
-// 				<h1>${userName}</h1>
-// 				<button id="logout-button"><i class="fas fa-sign-out-alt"></i></button>
-// 			</div>
-// 		`);
-//     $('#header').append($div);
-//   } else {
-//     const $div = $(`
-// 			<div>
-// 			<button id="login-button">Login</button>
-// 			</div>
-// 		`);
-//     $('#header').append($div);
-//   }
-// };
+const createHeaderDiv  = (user) => {
+  const $pageHeader = $("#header")
+  $pageHeader.empty();
+  const $logo = $(`<i class="fas fa-check-circle"></i>`);
+  $('#header').append($logo);
+  if (Object.keys(user).length > 0){
+    const $div = $(`
+			<div>
+				<h1>${user.name}</h1>
+				<button id="logout-button"><i class="fas fa-sign-out-alt"></i></button>
+			</div>
+		`);
+    $('#header').append($div);
+  } else {
+    const $div = $(`
+      <div>
+        <button id="register-button">Register</button>
+      </div>
+			<div>
+			  <button id="login-button">Login</button>
+			</div>
+		`);
+    $('#header').append($div);
+  }
+};
+
+const getUser = function () {
+  return $.ajax ({
+    url: "/users/",
+  })
+    .then(userObj => {
+      return userObj
+    })
+}
