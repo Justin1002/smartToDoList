@@ -43,11 +43,17 @@ $(document).ready(function() {
     submitEvent();
 });
 
+const escape =  function(str) {
+  let a = document.createElement('a');
+  a.appendChild(document.createTextNode(str));
+  return a.innerHTML;
+};
+
 const createTaskElement = (taskObj) => {
 
   const $newTask =`
   <div class="task ${taskObj.category}" id=${taskObj.id}>
-    <p>${taskObj.description}</p>
+    <p>${escape(taskObj.description)}</p>
     <div class="task-buttons">
       <button class='completion' value=${taskObj.completed} type='submit'><i class="far fa-check-square"></i></button>
       <button class='delete' type='submit'><i class="fas fa-trash-alt"></i></button>
