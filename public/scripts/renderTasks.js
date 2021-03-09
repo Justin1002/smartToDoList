@@ -18,14 +18,6 @@ $(document).ready(function() {
       $('#new-task-popup').toggleClass('show')
     };
 
-    const submitTaskForm = $('#new-task-form')
-
-    submitTaskForm.on('submit', function(event) {
-      event.preventDefault();
-      console.log('click')
-      const input = $(this);
-      submitTask(input);
-    })
     // Get the modal
     // let modal = document.getElementById("edit-task-popup");
 
@@ -44,8 +36,8 @@ $(document).ready(function() {
     // span.onclick = function() {
     //   modal.style.display = "none";
     // };
-
-    loadTask();
+    renderTasks();
+    submitEvent();
 });
 
 const createTaskElement = (taskObj) => {
@@ -62,6 +54,10 @@ const createTaskElement = (taskObj) => {
   return $newTask;
 };
 
+const clearTasks= () => {
+
+}
+
 const renderTasks = () => {
   $(".watch-tasks").empty();
   $(".eat-tasks").empty();
@@ -72,22 +68,22 @@ const renderTasks = () => {
   $.get('/tasks')
     .then(data =>{
       for (const taskID in data) {
+        console.log('taskID', taskID);
         const task = data[taskID]
         const newTask = createTaskElement(task);
         if(task.category === 'watch'){
-          $('.category-watch').append(newTask);
+          $('.watch-tasks').append(newTask);
         } else if (task.category === 'eat') {
-          $('.category-eat').append(newTask);
+          $('.eat-tasks').append(newTask);
         } else if (task.category === 'read') {
-          $('.category-read').append(newTask);
+          $('.read-tasks').append(newTask);
         } else if (task.category === 'buy') {
-          $('.category-buy').append(newTask);
+          $('.buy-tasks').append(newTask);
         } else {
-          $('.category-null').append(newTask);
+          $('.null-tasks').append(newTask);
         }
       }
     })
-
 };
 
 // const submitNewTask = () => {
@@ -106,24 +102,15 @@ const renderTasks = () => {
 const loadTask = () => {
   $('#new-task-form').submit((event) => {
     event.preventDefault();
+    console.log("in loadTask()");
     const url = "/task";
-    let $formSubmit = $ ("#text_description").val();
-    $formSubmit = $formSubmit.trim();
     $.get(url).then((req, response) => {
-      console.log(req);
+      console.log('showing req:', req);
       renderTasks();
       $("#text").val(''); // clears the textarea
     });
   });
 };
-
-
-// const loadTweets = () => {
-//   $.get('/tasks/', function(data) {
-//     renderTweets(data);
-//   });
-// };
-
 
 // const submitTask = function(input) {
 //   const textObj = input.find('#task-description');
@@ -138,7 +125,18 @@ const loadTask = () => {
 //   //renderTasksElements
 // }
 
+const submitEvent = () => {
+  const submitTaskForm = $('#new-task-form')
+  submitTaskForm.submit(function(event) {
+    event.preventDefault();
+    console.log('click')
+    const input = $(this);
+    submitTask(input);
+  })
+};
+
 const submitTask = function(input) {
+
   const textObj = input.find('#task-description');
   const serializedText = textObj.serialize()
   const textValue = textObj.val()
@@ -159,10 +157,8 @@ const submitTask = function(input) {
   })
     .done(() => {
       (modal.toggleClass('show'))
-      renderTasks()
+      console.log('posted the task')
+      renderTasks();
     })
   }
 }
-
-renderTasks();
-// renderTasks();
