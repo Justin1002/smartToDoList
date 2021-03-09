@@ -67,8 +67,9 @@ module.exports = (db) => {
     const category = req.body.category;
     const description = req.body.text_description;
     const taskID = req.params.taskID;
-
-    updateTask(userID,category,description,taskID, db)
+    const completion = req.body.completed;
+    console.log('test',completion)
+    updateTask(userID,category,description, completion, taskID, db)
       .then( task => {
         console.log(task)
         res.send(task)})
@@ -77,22 +78,6 @@ module.exports = (db) => {
         res.send(e)
       })
   })
-
-  //completed PUT
-  router.put("/:taskID", (req,res) => {
-    const userID = req.session.user_id
-    if (!userID) {
-      res.status(401).send("Not logged in");
-      return
-    }
-    const completed = req.body.completed;
-    console.log(completed);
-    if(completed){
-      //QUERY TO SET TO FALSE
-    } else {
-      //QUERY SET TO TRUE;
-    }
-  });
 
   router.delete("/:taskID", (req,res) => {
     const userID = req.session.user_id
@@ -149,22 +134,37 @@ const insertUserTask = function(userid, description, category, db) {
    });
 }
 
-const updateTask = function(userid, category, description, taskID, db) {
+const updateTask = function(userid, category, description, completion, taskID, db) {
 
-  let query = `UPDATE tasks SET category = $1`
+  let query = `UPDATE tasks SET`
   // description = $2
   // WHERE user_id = $3 AND id = $4
   // RETURNING *;`
-  const queryParams = [category];
+  const queryParams = [];
+
+  if (category) {
+    query.Params.push(category)
+    query += ` category = $${queryParams.length}`
+  }
+
   if (description) {
     queryParams.push(description)
     query += `, description = $${queryParams.length}`
   }
+
+  if (completion) {
+    queryParams.push(completion)
+    query += ` completed = $${queryParams.length}`
+  }
+
     queryParams.push(userid)
     query += ` WHERE user_id = $${queryParams.length}`
 
     queryParams.push(taskID)
     query += ` AND id = $${queryParams.length} RETURNING *;`
+
+  console.log(queryParams)
+  console.log(query)
 
   return db.query(query, queryParams)
     .then (

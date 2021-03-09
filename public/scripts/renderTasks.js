@@ -2,28 +2,40 @@ $(document).ready(function() {
 
   submitModal()
     $('.watch-category-btn').on('click', () => {
+      renderTasks();
       categoryShow('watch');
     });
 
     $('.all-category-btn').on('click', () => {
+      renderTasks();
       categoryShow('all');
     });
 
     $('.eat-category-btn').on('click', () => {
+      renderTasks();
       categoryShow('eat');
     });
 
     $('.read-category-btn').on('click', () => {
+      renderTasks();
       categoryShow('read');
     });
 
     $('.buy-category-btn').on('click', () => {
+      renderTasks();
       categoryShow('buy');
     });
 
     $('.null-category-btn').on('click', () => {
+      renderTasks();
       categoryShow('null');
     });
+
+    $('.completed-category-btn').on('click', () => {
+      renderCompletedTask();
+      categoryShow('completed');
+    });
+
     completeTask();
     updateTask();
     deleteTask();
@@ -51,14 +63,22 @@ const completeTask = () => {
     console.log('clicked')
     const $completeButton = $(this);
     const taskID = $completeButton.closest('.task').attr('id');
-    // $.ajax({
-    //   type: 'PUT',
-    //   url: `/tasks/${taskID}`,
-    // })
-    //   .done(() => {
-    //     console.log('Completed Task Successful');
-    //     renderTasks();
-    //   })
+    let currentValue = $(this).attr('value')
+    if (currentValue === 'false') {
+      $(this).attr('value','true')
+    } else {
+      $(this).attr('value','false')
+    }
+
+    $.ajax({
+      type: 'PUT',
+      url: `/tasks/${taskID}`,
+      data: {completed: $(this).attr('value')}
+    })
+      .done(() => {
+        console.log('Completed Task Successful');
+        renderTasks();
+      })
   })
 };
 
@@ -115,21 +135,47 @@ const renderTasks = () => {
     .then(data =>{
       for (const taskID in data) {
         const task = data[taskID]
-        const newTask = createTaskElement(task);
-        if(task.category === 'watch'){
-          $('.watch-tasks').append(newTask);
-        } else if (task.category === 'eat') {
-          $('.eat-tasks').append(newTask);
-        } else if (task.category === 'read') {
-          $('.read-tasks').append(newTask);
-        } else if (task.category === 'buy') {
-          $('.buy-tasks').append(newTask);
-        } else {
-          $('.null-tasks').append(newTask);
+        if(!task.completed){
+          const newTask = createTaskElement(task);
+          if(task.category === 'watch'){
+            $('.watch-tasks').append(newTask);
+          } else if (task.category === 'eat') {
+            $('.eat-tasks').append(newTask);
+          } else if (task.category === 'read') {
+            $('.read-tasks').append(newTask);
+          } else if (task.category === 'buy') {
+            $('.buy-tasks').append(newTask);
+          } else {
+            $('.null-tasks').append(newTask);
+          }
         }
       }
     })
 };
+
+const renderCompletedTask = () => {
+  clearTasks();
+  $.get('/tasks')
+    .then(data =>{
+      for (const taskID in data) {
+        const task = data[taskID]
+        if(task.completed){
+          const newTask = createTaskElement(task);
+          if(task.category === 'watch'){
+            $('.watch-tasks').append(newTask);
+          } else if (task.category === 'eat') {
+            $('.eat-tasks').append(newTask);
+          } else if (task.category === 'read') {
+            $('.read-tasks').append(newTask);
+          } else if (task.category === 'buy') {
+            $('.buy-tasks').append(newTask);
+          } else {
+            $('.null-tasks').append(newTask);
+          }
+        }
+      }
+    })
+}
 
 const loadTask = () => {
   $('#new-task-form').submit((event) => {
@@ -224,6 +270,13 @@ const categoryShow = function(category) {
       $(".category-eat").hide()
       $(".category-read").hide()
       $(".category-buy").hide()
+      $(".category-null").show()
+      break;
+    case 'completed':
+      $(".category-watch").show()
+      $(".category-eat").show()
+      $(".category-read").show()
+      $(".category-buy").show()
       $(".category-null").show()
       break;
   }
