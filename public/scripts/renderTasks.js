@@ -127,6 +127,12 @@ const clearTasks = () => {
   $(".read-tasks").empty();
   $(".buy-tasks").empty();
   $(".null-tasks").empty();
+
+  $('.h2-watch').hide()
+  $('.h2-eat').hide()
+  $('.h2-read').hide()
+  $('.h2-buy').hide()
+  $('.h2-null').hide()
 };
 
 const renderTasks = () => {
@@ -138,14 +144,19 @@ const renderTasks = () => {
         if(!task.completed){
           const newTask = createTaskElement(task);
           if(task.category === 'watch'){
+            $('.h2-watch').show()
             $('.watch-tasks').append(newTask);
           } else if (task.category === 'eat') {
+            $('.h2-eat').show()
             $('.eat-tasks').append(newTask);
           } else if (task.category === 'read') {
+            $('.h2-read').show()
             $('.read-tasks').append(newTask);
           } else if (task.category === 'buy') {
+            $('.h2-buy').show()
             $('.buy-tasks').append(newTask);
           } else {
+            $('.h2-null').show()
             $('.null-tasks').append(newTask);
           }
         }
@@ -162,14 +173,19 @@ const renderCompletedTask = () => {
         if(task.completed){
           const newTask = createTaskElement(task);
           if(task.category === 'watch'){
+            $('.h2-watch').show()
             $('.watch-tasks').append(newTask);
           } else if (task.category === 'eat') {
+            $('.h2-eat').show()
             $('.eat-tasks').append(newTask);
           } else if (task.category === 'read') {
+            $('.h2-read').show()
             $('.read-tasks').append(newTask);
           } else if (task.category === 'buy') {
+            $('.h2-buy').show()
             $('.buy-tasks').append(newTask);
           } else {
+            $('.h2-null').show()
             $('.null-tasks').append(newTask);
           }
         }
@@ -222,6 +238,7 @@ const submitTask = function(input) {
   })
     .done(() => {
       (modal.toggleClass('show'))
+      textObj.val('')
       console.log('posted the task')
       renderTasks();
     })
