@@ -66,34 +66,40 @@ $(document).ready(function() {
       $(".category-null").show()
     });
 
-    // to be implemented
-    // $('.complete-category-btn').on('click', () => {
-    //   $(".category-watch").hide()
-    //   $(".category-eat").hide()
-    //   $(".category-read").hide()
-    //   $(".category-buy").hide()
-    //   $(".category-null").hide()
-    // });
-
-
-
+    deleteTask();
     renderTasks();
     submitEvent();
 });
 
 const createTaskElement = (taskObj) => {
   const $newTask =`
-  <div class="task">
+  <div class="task" id=${taskObj.id}>
     <p>${taskObj.description}</p>
     <div class="task-buttons">
-      <button class='completion'><i class="far fa-check-square"></i></button>
-      <button class='delete'><i class="fas fa-trash-alt"></i></button>
-      <button id="edit-task"><i class="fas fa-pencil-alt"></i></button>
+      <button class='completion' type='submit'><i class="far fa-check-square"></i></button>
+      <button class='delete' type='submit'><i class="fas fa-trash-alt"></i></button>
+      <button class='edit-task' type='submit'><i class="fas fa-pencil-alt"></i></button>
     </div>
   </div>
   `
   return $newTask;
 };
+
+const deleteTask = () => {
+  $('#tasks-container').on('click', '.delete', function() {
+    console.log('click');
+    const $deleteButton = $('.delete');
+    const taskID = $deleteButton.closest('.task').attr('id');
+    $.ajax({
+      type: 'DELETE',
+      url: `/tasks/${taskID}`,
+    })
+      .done(() => {
+        console.log('Delete Successful');
+        renderTasks();
+      })
+  });
+}
 
 const clearTasks = () => {
   $(".watch-tasks").empty();
@@ -103,13 +109,11 @@ const clearTasks = () => {
   $(".null-tasks").empty();
 };
 
-
 const renderTasks = () => {
   clearTasks();
   $.get('/tasks')
     .then(data =>{
       for (const taskID in data) {
-        console.log('taskID', taskID);
         const task = data[taskID]
         const newTask = createTaskElement(task);
         if(task.category === 'watch'){
