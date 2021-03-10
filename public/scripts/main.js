@@ -97,7 +97,7 @@ const $newTaskModal = `<!-- The Modal -->
 
   <!-- Modal content -->
   <div class="modal-content">
-    <span class="close">&times;</span>
+    <span class="close new">&times;</span>
     <form id="new-task-form">
       <div>
         <textarea name="text_description" id="task-description"></textarea>
@@ -112,7 +112,7 @@ const $editTaskModal = `<div id="edit-task-popup" class="modal">
 
 <!-- Modal content -->
 <div class="modal-content">
-  <span class="close">&times;</span>
+  <span class="close edit">&times;</span>
   <form id="edit-task-form">
     <div>
       <label for="category">Category:</label>

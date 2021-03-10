@@ -119,13 +119,14 @@ const deleteTask = () => {
 }
 
 const updateTask = () => {
-  const submitEditForm = $('#edit-task-form')
-  submitEditForm.submit(function(event) {
+  // const submitEditForm = $('#edit-task-form')
+  $(document).on('submit','#edit-task-form', (event) => {
     event.preventDefault();
-    const modal = $('#edit-task-popup');
+    console.log('submit')
+    const modal = $('#edit-task-popup')
     const taskID = $('body').data().taskID;
-    const textObj = $(this).find('#edit-task-description');
-    const serializeValue = $(this).serialize()
+    const textObj = $('#edit-task-description')
+    const serializeValue = $('#edit-task-form').serialize()
 
     console.log(serializeValue);
     $.ajax({
@@ -139,7 +140,8 @@ const updateTask = () => {
         textObj.val("")
         renderTasks();
       })
-    });
+
+  })
 }
 
 const clearTasks = () => {
@@ -328,7 +330,7 @@ const submitModal = function() {
     $('#new-task-popup').toggleClass('show')
   });
   // Get the span element that closes the modal
-  $(document).on('click','.close', (event) => {
+  $(document).on('click','.close.new', (event) => {
     $('#new-task-popup').toggleClass('show')
   })
 
