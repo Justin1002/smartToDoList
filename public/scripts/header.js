@@ -6,6 +6,16 @@ $(document).ready(function() {
       createHeaderDiv(userObj);
     });
 
+  $(document).on('click','#main-page-button', function(event) {
+    event.preventDefault();
+    $main.empty();
+    getUser()
+      .then(userObj => {
+        createHeaderDiv(userObj);
+        appendMain(userObj);
+      })
+  })
+
   $(document).on('click', '#logout-button', function(event) {
     event.preventDefault();
     logout();
@@ -53,7 +63,7 @@ $(document).ready(function() {
 const createHeaderDiv  = (user) => {
   const $pageHeader = $("#header");
   $pageHeader.empty();
-  const $logo = $(`<i class="fas fa-check-circle"></i>`);
+  const $logo = $(`<button id=main-page-button><i class="fas fa-check-circle"></i></button>`);
   $('#header').append($logo);
   if (Object.keys(user).length > 0) {
     const $div = $(`
