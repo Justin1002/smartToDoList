@@ -16,6 +16,7 @@ module.exports = (db) => {
 
   router.post('/', (req, res) => {
     const {email, password} = req.body;
+    console.log(req.body)
     login(email,password,db)
       .then(user => {
         if(!user) {
@@ -23,7 +24,7 @@ module.exports = (db) => {
           return
         }
         req.session.user_id = user.id;
-        res.send({user: {name: user.name, email: user.email, id: user.id}})
+        res.send({name: user.name, email: user.email, id: user.id})
       })
       .catch(e => res.send(e));
     })

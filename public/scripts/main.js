@@ -20,12 +20,15 @@ $(document).ready(function() {
 //
 const appendMain = function(user) {
   $main = $('main')
+
   if (Object.keys(user).length > 0) {
+    $('$login-form').remove()
     $('#tasks-container').show();
     $('.button-group').show();
     $('#new-task').show();
   }
   else {
+
     $('#tasks-container').hide();
     $('.button-group').hide();
     $('#new-task').hide();
@@ -33,7 +36,7 @@ const appendMain = function(user) {
     $loginForm = `<form id="login-form">
     <div>
       <div class="container">
-      <label for="uname"><b>Username</b></label>
+      <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Enter Email" name="email" required>
 
       <label for="psw"><b>Password</b></label>

@@ -84,7 +84,14 @@ const completeTask = () => {
     })
       .done(() => {
         console.log('Completed Task Successful');
+        console.log($completeButton.closest('.taskContainer').children().length)
+        if ($completeButton.closest('.taskContainer').children().length === 1) {
+          $completeButton.closest('.taskContainer').siblings().hide()
+          $completeButton.closest('.task').remove()
+        }
+        else {
         $completeButton.closest('.task').remove()
+        }
       })
   })
 };
@@ -99,6 +106,13 @@ const deleteTask = () => {
     })
       .done(() => {
         console.log('Delete Successful');
+        if ($deleteButton.closest('.taskContainer').children().length === 1) {
+          $deleteButton.closest('.taskContainer').siblings().hide()
+          $deleteButton.closest('.task').remove()
+        }
+        else {
+        $deleteButton.closest('.task').remove()
+        }
         $deleteButton.closest('.task').remove()
       })
   });
@@ -129,17 +143,17 @@ const updateTask = () => {
 }
 
 const clearTasks = () => {
-  $(".watch-tasks").empty();
-  $(".eat-tasks").empty();
-  $(".read-tasks").empty();
-  $(".buy-tasks").empty();
-  $(".null-tasks").empty();
+  $(".watch.taskContainer").empty();
+  $(".eat.taskContainer").empty();
+  $(".read.taskContainer").empty();
+  $(".buy.taskContainer").empty();
+  $(".null.taskContainer").empty();
 
-  $('.h2-watch').hide()
-  $('.h2-eat').hide()
-  $('.h2-read').hide()
-  $('.h2-buy').hide()
-  $('.h2-null').hide()
+  $('.h2.watch').hide()
+  $('.h2.eat').hide()
+  $('.h2.read').hide()
+  $('.h2.buy').hide()
+  $('.h2.null').hide()
 };
 
 const renderTasks = () => {
@@ -151,20 +165,20 @@ const renderTasks = () => {
         if(!task.completed){
           const newTask = createTaskElement(task);
           if(task.category === 'watch'){
-            $('.h2-watch').show()
-            $('.watch-tasks').append(newTask);
+            $('.h2.watch').show()
+            $('.watch.taskContainer').append(newTask);
           } else if (task.category === 'eat') {
-            $('.h2-eat').show()
-            $('.eat-tasks').append(newTask);
+            $('.h2.eat').show()
+            $('.eat.taskContainer').append(newTask);
           } else if (task.category === 'read') {
-            $('.h2-read').show()
-            $('.read-tasks').append(newTask);
+            $('.h2.read').show()
+            $('.read.taskContainer').append(newTask);
           } else if (task.category === 'buy') {
-            $('.h2-buy').show()
-            $('.buy-tasks').append(newTask);
+            $('.h2.buy').show()
+            $('.buy.taskContainer').append(newTask);
           } else {
-            $('.h2-null').show()
-            $('.null-tasks').append(newTask);
+            $('.h2.null').show()
+            $('.null.taskContainer').append(newTask);
           }
         }
       }
@@ -180,20 +194,20 @@ const renderCompletedTask = () => {
         if(task.completed){
           const newTask = createTaskElement(task);
           if(task.category === 'watch'){
-            $('.h2-watch').show()
-            $('.watch-tasks').append(newTask);
+            $('.h2.watch').show()
+            $('.watch.taskContainer').append(newTask);
           } else if (task.category === 'eat') {
-            $('.h2-eat').show()
-            $('.eat-tasks').append(newTask);
+            $('.h2.eat').show()
+            $('.eat.taskContainer').append(newTask);
           } else if (task.category === 'read') {
-            $('.h2-read').show()
-            $('.read-tasks').append(newTask);
+            $('.h2.read').show()
+            $('.read.taskContainer').append(newTask);
           } else if (task.category === 'buy') {
-            $('.h2-buy').show()
-            $('.buy-tasks').append(newTask);
+            $('.h2.buy').show()
+            $('.buy.taskContainer').append(newTask);
           } else {
-            $('.h2-null').show()
-            $('.null-tasks').append(newTask);
+            $('.h2.null').show()
+            $('.null.taskContainer').append(newTask);
           }
         }
       }
