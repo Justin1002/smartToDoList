@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   // When the user clicks on the button, open the modal
-  $('#tasks-container').on('click', '.edit-task', function() {
+  $(document).on('click', '.edit-task', function() {
     const $editTaskButton = $(this)
     const taskID = $editTaskButton.closest('.task').attr('id')
     const category = $editTaskButton.closest('.task').attr('class').split(' ')[1];

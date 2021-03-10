@@ -2,37 +2,37 @@ $(document).ready(function() {
 
   submitModal()
 
-    $('.watch-category-btn').on('click', () => {
+    $(document).on('click','.watch-category-btn', () => {
       renderTasks()
       categoryShow('watch');
     });
 
-    $('.all-category-btn').on('click', () => {
+    $(document).on('click','.all-category-btn', () => {
       renderTasks();
       categoryShow('all');
     });
 
-    $('.eat-category-btn').on('click', () => {
+    $(document).on('click', '.eat-category-btn', () => {
       renderTasks();
       categoryShow('eat');
     });
 
-    $('.read-category-btn').on('click', () => {
+    $(document).on('click', '.read-category-btn', () => {
       renderTasks();
       categoryShow('read');
     });
 
-    $('.buy-category-btn').on('click', () => {
+    $(document).on('click','.buy-category-btn', () => {
       renderTasks();
       categoryShow('buy');
     });
 
-    $('.null-category-btn').on('click', () => {
+    $(document).on('click', '.null-category-btn', () => {
       renderTasks();
       categoryShow('null');
     });
 
-    $('.completed-category-btn').on('click', () => {
+    $(document).on('click', '.completed-category-btn', () => {
       renderCompletedTask();
       categoryShow('completed');
     });
@@ -41,7 +41,7 @@ $(document).ready(function() {
     updateTask();
     deleteTask();
     renderTasks();
-    submitEvent();
+    submitTask();
 });
 
 const escape =  function(str) {
@@ -66,7 +66,7 @@ const createTaskElement = (taskObj) => {
 };
 
 const completeTask = () => {
-  $('#tasks-container').on('click', '.completion', function() {
+  $(document).on('click', '.completion', function() {
     console.log('clicked')
     const $completeButton = $(this);
     const taskID = $completeButton.closest('.task').attr('id');
@@ -97,7 +97,7 @@ const completeTask = () => {
 };
 
 const deleteTask = () => {
-  $('#tasks-container').on('click', '.delete', function() {
+  $(document).on('click', '.delete', function() {
     const $deleteButton = $(this);
     const taskID = $deleteButton.closest('.task').attr('id');
     $.ajax({
@@ -227,21 +227,18 @@ const loadTask = () => {
   });
 };
 
-const submitEvent = () => {
-  const submitTaskForm = $('#new-task-form')
-  submitTaskForm.submit(function(event) {
+const submitTask = () => {
+  // const submitTaskForm = $('#new-task-form')
+  $(document).on('submit', '#new-task-form', (event) => {
     event.preventDefault();
     console.log('click')
-    const input = $(this);
-    submitTask(input);
-  })
-};
 
-const submitTask = function(input) {
-
+  const input = $('#new-task-form')
   const textObj = input.find('#task-description');
+
   const serializedText = textObj.serialize()
   const textValue = textObj.val()
+
   const error = input.find('.error')
   const errorIcon = `<i class="fas fa-exclamation-triangle"></i>`
   error.html("");
@@ -264,7 +261,11 @@ const submitTask = function(input) {
       renderTasks();
     })
   }
-}
+
+  });
+
+};
+
 
 const categoryShow = function(category) {
   switch(category) {
@@ -322,20 +323,15 @@ const categoryShow = function(category) {
 
 const submitModal = function() {
   // Get the button that opens the modal
-  const button = document.getElementById("new-task");
-
-  // When the user clicks on the button, open the modal
-  button.onclick = function() {
+   $(document).on('click',"#new-task", (event) => {
+     console.log('click')
     $('#new-task-popup').toggleClass('show')
-    };
-
-  // Get the <span> element that closes the modal
-  const span = document.getElementsByClassName("close")[0];
-
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = function() {
+  });
+  // Get the span element that closes the modal
+  $(document).on('click','.close', (event) => {
     $('#new-task-popup').toggleClass('show')
-  };
+  })
+
 }
 
 // // const noTasks = function(category) {
