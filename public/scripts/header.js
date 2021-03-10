@@ -6,6 +6,11 @@ $(document).ready(function() {
       createHeaderDiv(userObj)
     })
 
+    $(document).on('click', '#logout-button', function(event) {
+      event.preventDefault()
+      logout()
+    })
+
 });
 
 
@@ -59,3 +64,18 @@ const getUser = function () {
       return userObj
     })
 }
+
+
+const logout = function() {
+  $.ajax({
+    method: "GET",
+    url: '/logout',
+  })
+    .then( data => {
+      // $('body').fadeOut(4000, function() {
+        location.reload()
+      // })
+
+    })
+}
+

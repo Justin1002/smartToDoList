@@ -3,7 +3,8 @@ $(() => {
     event.preventDefault();
     const serializedData = $(this).serialize();
     login(serializedData)
-})
+  })
+
 })
 
 const login = function(data) {
@@ -17,3 +18,4 @@ const login = function(data) {
       location.reload()
     })
 }
+

@@ -4,8 +4,6 @@ const bcrypt = require('bcrypt');
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
-    console.log(req.session)
-    req.session.user_id = 1;
     res.redirect('/')
   })
 
