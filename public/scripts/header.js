@@ -14,17 +14,13 @@ $(document).ready(function() {
   $(document).on('click','#register-button', function(event) {
     event.preventDefault();
     $main.empty();
-    $('#tasks-container').hide();
-    $('.button-group').hide();
-    $('#new-task').hide();
+    $main.append($registerForm)
+
   });
 
   $(document).on('click','#login-button', function(event) {
     event.preventDefault();
     $main.empty();
-    $('#tasks-container').hide();
-    $('.button-group').hide();
-    $('#new-task').hide();
     $main.append($loginForm);
   });
 
@@ -94,3 +90,42 @@ const logout = function() {
     });
 };
 
+$registerForm = `<form id="register-form">
+<div>
+  <div class="container">
+    <div>
+      <label for="Name"><b>Name</b></label>
+      <input type="text" placeholder="Name" name="name" required>
+    </div>
+    <div>
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+    </div>
+    <div>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+    </div>
+    <div>
+    <label for="location"><b>Location</b></label>
+    <input type="text" placeholder="Enter Location" name="location" required>
+  </div>
+    <button type="submit">Register</button>
+  </div>
+</div>
+</form>`
+
+$loginForm = `<form id="login-form">
+<div>
+  <div class="container">
+    <div>
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+    </div>
+    <div>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+    </div>
+    <button type="submit">Login</button>
+  </div>
+</div>
+</form>`;
