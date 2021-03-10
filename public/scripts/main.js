@@ -3,7 +3,7 @@ $(document).ready(function() {
   getUser()
     .then(userData => {
       appendMain(userData);
-    })
+    });
 });
 
 
@@ -19,15 +19,14 @@ $(document).ready(function() {
 //otherwise append to main login page
 //
 const appendMain = function(user) {
-  $main = $('main')
+  $main = $('main');
 
   if (Object.keys(user).length > 0) {
-    $('$login-form').remove()
+    $('$login-form').remove();
     $('#tasks-container').show();
     $('.button-group').show();
     $('#new-task').show();
-  }
-  else {
+  } else {
 
     $('#tasks-container').hide();
     $('.button-group').hide();
@@ -35,17 +34,19 @@ const appendMain = function(user) {
 
     $loginForm = `<form id="login-form">
     <div>
-      <div class="container">
-      <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" required>
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" required>
-
-      <button type="submit">Login</button>
+			<div class="container">
+				<div>
+					<label for="email"><b>Email</b></label>
+      		<input type="text" placeholder="Enter Email" name="email" required>
+				</div>
+				<div>
+					<label for="psw"><b>Password</b></label>
+      		<input type="password" placeholder="Enter Password" name="password" required>
+				</div>
+      	<button type="submit">Login</button>
       </div>
     </div>
-  </form>`
-    $main.append($loginForm)
+  </form>`;
+    $main.append($loginForm);
   }
-}
+};
