@@ -2,14 +2,14 @@ $(document).ready(function() {
 
   getUser()
     .then(userObj => {
-      console.log(userObj)
-      createHeaderDiv(userObj)
-    })
+      console.log(userObj);
+      createHeaderDiv(userObj);
+    });
 
-    $(document).on('click', '#logout-button', function(event) {
-      event.preventDefault()
-      logout()
-    })
+  $(document).on('click', '#logout-button', function(event) {
+    event.preventDefault();
+    logout();
+  });
 
 });
 
@@ -31,11 +31,11 @@ $(document).ready(function() {
 // });
 
 const createHeaderDiv  = (user) => {
-  const $pageHeader = $("#header")
+  const $pageHeader = $("#header");
   $pageHeader.empty();
   const $logo = $(`<i class="fas fa-check-circle"></i>`);
   $('#header').append($logo);
-  if (Object.keys(user).length > 0){
+  if (Object.keys(user).length > 0) {
     const $div = $(`
 			<div>
 				<h1>${user.name}</h1>
@@ -47,8 +47,6 @@ const createHeaderDiv  = (user) => {
     const $div = $(`
       <div>
         <button id="register-button">Register</button>
-      </div>
-			<div>
 			  <button id="login-button">Login</button>
 			</div>
 		`);
@@ -56,14 +54,14 @@ const createHeaderDiv  = (user) => {
   }
 };
 
-const getUser = function () {
-  return $.ajax ({
+const getUser = function() {
+  return $.ajax({
     url: "/users/",
   })
     .then(userObj => {
-      return userObj
-    })
-}
+      return userObj;
+    });
+};
 
 
 const logout = function() {
@@ -71,11 +69,11 @@ const logout = function() {
     method: "GET",
     url: '/logout',
   })
-    .then( data => {
+    .then(data => {
       // $('body').fadeOut(4000, function() {
-        location.reload()
+      location.reload();
       // })
 
-    })
-}
+    });
+};
 

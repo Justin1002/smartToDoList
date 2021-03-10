@@ -1,0 +1,56 @@
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: cornflowerblue;
+}
+
+header h1 {
+  padding: 3px;
+  color: black;
+}
+
+header div {
+  display: flex;
+  align-items: center;
+}
+
+header i {
+  font-size: 60px;
+}
+
+header div i {
+  font-size: 40px;
+  padding-left: 10px;
+}
+
+header button {
+  border: none;
+  box-shadow: none;
+  background-color: cornflowerblue;
+}
+
+header #logout-button {
+  border: none;
+  box-shadow: none;
+  background-color: cornflowerblue;
+}
+
+header #login-button {
+  font-size: 30px;
+  border: 2px solid black;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+header #register-button {
+  font-size: 30px;
+  border: 2px solid black;
+	padding: 10px;
+	margin-right: 10px;
+  border-radius: 10px;
+}

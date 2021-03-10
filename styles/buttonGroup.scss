@@ -1,0 +1,26 @@
+.button-group {
+	width: 100%;
+	height: fit-content;
+}
+
+.button-group button {
+	border: 2px solid black;
+	padding: 7px 5px 7px 5px;
+	width: 14.2%;
+	height: 70px;
+	font-size: 1em;
+	float: left;
+	box-shadow: 3px 3px 0px 0px black;
+}
+
+.button-group button:hover {
+	background-color: cornflowerblue;
+}
+
+.button-group button i {
+	font-size: #{"min(8vw, 40px)"};
+}
+
+.button-group button:not(:last-child) {
+	border-right: none;
+}

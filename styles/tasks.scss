@@ -1,0 +1,49 @@
+#new-task {
+	border: 1px solid black;
+	box-shadow: 3px 3px 0px 0px black;
+	padding: 5px;
+	margin: 15px 0px 15px 0px;
+	width: fit-content;
+}
+
+#new-task:hover {
+	background-color: #aaa;
+}
+
+section {
+	height: min-content;
+	border: 3px solid black;
+	padding: 20px 20px 0px 20px;
+	margin-bottom: 10px;
+}
+
+.category {
+	margin-bottom: 20px;
+}
+
+section h2 {
+	margin: 0px 0px 5px 0px;
+}
+
+.task {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+section p {
+	margin: 0px 0px 5px 0px;
+}
+
+#tasks-container .task-buttons button {
+	border: none;
+}
+
+#tasks-container i {
+	height: 15px;
+	width: 15px;
+}
+
+.completion[value=true]{
+  color: green
+}
