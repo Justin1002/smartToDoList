@@ -24,6 +24,13 @@ $(document).ready(function() {
     $main.append($loginForm);
   });
 
+  $(document).on('click','#update-profile-button', function(event) {
+    event.preventDefault();
+    $main.empty();
+    $main.append($updateProfileForm);
+  })
+
+
 });
 
 
@@ -51,7 +58,9 @@ const createHeaderDiv  = (user) => {
   if (Object.keys(user).length > 0) {
     const $div = $(`
 			<div>
+      <button id ="update-profile-button">
 				<h1>${user.name}</h1>
+      </button>
 				<button id="logout-button"><i class="fas fa-sign-out-alt"></i></button>
 			</div>
 		`);
@@ -90,7 +99,7 @@ const logout = function() {
     });
 };
 
-$registerForm = `<form id="register-form">
+$registerForm = `<form id=register-form class="form">
 <div>
   <div class="container">
     <div>
@@ -114,7 +123,7 @@ $registerForm = `<form id="register-form">
 </div>
 </form>`
 
-$loginForm = `<form id="login-form">
+$loginForm = `<form id =login-form class="form">
 <div>
   <div class="container">
     <div>
@@ -129,3 +138,27 @@ $loginForm = `<form id="login-form">
   </div>
 </div>
 </form>`;
+
+$updateProfileForm = `<form id=update-profile-form class="form">
+<div>
+  <div class="container">
+    <div>
+      <label for="Name"><b>Name</b></label>
+      <input type="text" placeholder="Name" name="name">
+    </div>
+    <div>
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email">
+    </div>
+    <div>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" >
+    </div>
+    <div>
+    <label for="location"><b>Location</b></label>
+    <input type="text" placeholder="Enter Location" name="location" >
+  </div>
+    <button type="submit">Update</button>
+  </div>
+</div>
+</form>`
