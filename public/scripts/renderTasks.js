@@ -3,45 +3,45 @@ $(document).ready(function() {
   submitModal()
 
     $(document).on('click','.watch-category-btn', () => {
-      renderTasks()
       categoryShow('watch');
+      renderTasks()
     });
 
     $(document).on('click','.all-category-btn', () => {
-      renderTasks();
       categoryShow('all');
+      renderTasks();
     });
 
     $(document).on('click', '.eat-category-btn', () => {
-      renderTasks();
       categoryShow('eat');
+      renderTasks();
     });
 
     $(document).on('click', '.read-category-btn', () => {
-      renderTasks();
       categoryShow('read');
+      renderTasks();
     });
 
     $(document).on('click','.buy-category-btn', () => {
-      renderTasks();
       categoryShow('buy');
+      renderTasks();
     });
 
     $(document).on('click', '.null-category-btn', () => {
-      renderTasks();
       categoryShow('null');
+      renderTasks();
     });
 
     $(document).on('click', '.completed-category-btn', () => {
-      renderCompletedTask();
       categoryShow('completed');
+      renderCompletedTask();
     });
 
     completeTask();
     updateTask();
     deleteTask();
-    renderTasks();
     submitTask();
+
 });
 
 const escape =  function(str) {
@@ -113,7 +113,6 @@ const deleteTask = () => {
         else {
         $deleteButton.closest('.task').remove()
         }
-        $deleteButton.closest('.task').remove()
       })
   });
 }
@@ -184,7 +183,9 @@ const renderTasks = () => {
           }
         }
       }
+      checkTask();
     })
+
 };
 
 const renderCompletedTask = () => {
@@ -342,3 +343,27 @@ const submitModal = function() {
 // //     $('#tasks-container').append("<p class='no-task'>You have no tasks here!</p>")
 // //   }
 // }
+
+const checkTask = function() {
+  let count = 0
+  let count2 = 0
+  $('#no-task-msg').remove()
+  $('#tasks-container').show()
+
+  $('#tasks-container').children('div').each(function () {
+    if ($(this).css('display') !== 'none' && $(this).find('.taskContainer').children().length === 0) {
+      console.log('contains no task')
+      count++
+    }
+  })
+  $('#tasks-container').children('div').each(function() {
+    if($(this).css('display') !== 'none') {
+      count2++
+    }
+  })
+
+  if(count === count2) {
+    $('#tasks-container').hide()
+    $('main').append(`<p id="no-task-msg">There are no tasks here!</p>`)
+  }
+}
