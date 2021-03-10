@@ -18,8 +18,9 @@ module.exports = (db) => {
     login(email,password,db)
       .then(user => {
         if(!user) {
-          res.status(401).send("Wrong password or email");
-          return
+          console.log('is this here');
+          res.status(401)
+          return res.send('test');
         }
         req.session.user_id = user.id;
         res.send({name: user.name, email: user.email, id: user.id})
@@ -33,15 +34,21 @@ module.exports = (db) => {
 const login = function(email,password,db) {
   const query = `SELECT * FROM users WHERE email = $1`
   const value = [email || 'null']
+  console.log(query)
+  console.log(value)
   return db.query(query,value)
-    .then (res => res.rows[0])
     .then (res => {
-      if (bcrypt.compareSync(password, res.password)) {
+      console.log(res.rows[0])
+      return res.rows[0]})
+    .then (res => {
+      console.log(res)
+      if (res !== undefined && bcrypt.compareSync(password, res.password)) {
         return res
       }
+      console.log('fail')
       return null;
     })
-    .catch(err => console.error('query error',err.stack));
+    .catch(err => res.send(err));
 }
 
 

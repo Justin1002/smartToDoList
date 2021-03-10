@@ -13,9 +13,16 @@ const login = function(data) {
     method: "POST",
     url:'/login',
     data: data,
+    statusCode: {
+      401: function() {
+        alert('Wrong email or password')
+      },
+    },
   })
     .then( data => {
-      location.reload()
+      console.log(data)
+      createHeaderDiv(data)
+      appendMain(data)
     })
 }
 

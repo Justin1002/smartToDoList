@@ -11,6 +11,23 @@ $(document).ready(function() {
     logout();
   });
 
+  $(document).on('click','#register-button', function(event) {
+    event.preventDefault();
+    $main.empty();
+    $('#tasks-container').hide();
+    $('.button-group').hide();
+    $('#new-task').hide();
+  });
+
+  $(document).on('click','#login-button', function(event) {
+    event.preventDefault();
+    $main.empty();
+    $('#tasks-container').hide();
+    $('.button-group').hide();
+    $('#new-task').hide();
+    $main.append($loginForm);
+  });
+
 });
 
 
@@ -70,9 +87,9 @@ const logout = function() {
     url: '/logout',
   })
     .then(data => {
-      // $('body').fadeOut(4000, function() {
-      location.reload();
-      // })
+      $main.empty();
+      createHeaderDiv({});
+      appendMain({});
 
     });
 };
