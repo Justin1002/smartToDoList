@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+  $main = $("main");
   getUser()
     .then(userData => {
       appendMain(userData);
@@ -20,10 +20,10 @@ $(document).ready(function() {
 //
 const appendMain = function(user) {
   $main = $("main");
-
+  $main.empty();
+  $main.css('display','none')
   if (Object.keys(user).length > 0) {
     console.log('yes');
-    $main.empty();
     // $('#login-form').remove()
     // $('#tasks-container').show();
     // $('.button-group').show();
@@ -31,23 +31,23 @@ const appendMain = function(user) {
     const $taskContainer = `<section id="tasks-container">
     <div class="category-watch">
       <h2 class='h2 watch'>To Watch:</h2>
-      <ul class='watch taskContainer'></ul>
+      <div class='watch taskContainer'></div>
     </div>
     <div class="category-eat">
       <h2 class='h2 eat'>To Eat:</h2>
-      <ul class='eat taskContainer'></ul>
+      <div class='eat taskContainer'></div>
     </div>
     <div class="category-read">
       <h2 class='h2 read'>To Read:</h2>
-      <ul class='read taskContainer'></ul>
+      <div class='read taskContainer'></div>
     </div>
     <div class="category-buy">
       <h2 class='h2 buy'>To Buy:</h2>
-      <ul class='buy taskContainer'></ul>
+      <div class='buy taskContainer'></div>
     </div>
     <div class="category-null">
       <h2 class='h2 null'>Uncategorized:</h2>
-      <ul class='null taskContainer'></ul>
+      <div class='null taskContainer'></div>
     </div>
   </section>`;
     const $newTask = `<button id="new-task">Add a new task</button>`;
@@ -69,12 +69,12 @@ const appendMain = function(user) {
     $('main').append($taskContainer);
     renderTasks();
   } else {
-    $main.empty();
     // $('#tasks-container').hide();
     // $('.button-group').hide();
     // $('#new-task').hide();
 
     $main.append($loginForm);
+    $main.fadeIn(1000);
   }
 };
 
@@ -116,3 +116,5 @@ const $editTaskModal = `<div id="edit-task-popup" class="modal">
   </form>
 </div>
 </div>`;
+
+$()

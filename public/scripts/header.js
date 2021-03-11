@@ -8,41 +8,70 @@ $(document).ready(function() {
 
   $(document).on('click','#main-page-button', function(event) {
     event.preventDefault();
-    $main.empty();
+
+    $main.children().fadeOut(1000).promise().then(function() {
+      $main.empty();
     getUser()
       .then(userObj => {
         createHeaderDiv(userObj);
         appendMain(userObj);
       })
+    })
   })
 
   $(document).on('click', '#logout-button', function(event) {
     event.preventDefault();
-    logout();
+    $main.children().fadeOut(1000).promise().then(function() {
+      logout()
+    })
   });
 
   $(document).on('click','#register-button', function(event) {
     event.preventDefault();
-    $main.empty();
-    $main.append($registerForm)
-
+    $main.children().fadeOut(1000).promise().then(function() {
+      $main.empty();
+      $main.css('display','none')
+      $main.append($registerForm)
+      $main.fadeIn(1000)
+    })
   });
 
   $(document).on('click','#login-button', function(event) {
     event.preventDefault();
-    $main.empty();
-    $main.append($loginForm);
+    $main.children().fadeOut(1000).promise().then(function() {
+      $main.empty();
+      $main.css('display','none')
+      $main.append($loginForm);
+      $main.fadeIn(1000)
+    })
   });
 
   $(document).on('click','#update-profile-button', function(event) {
     event.preventDefault();
-    $main.empty();
-    $main.append($updateProfileForm);
+    // $main.empty();
+    // $main.append($updateProfileForm);
+    $main.children().fadeOut(1000).promise().then(function() {
+      $main.empty();
+      $main.css('display','none')
+      $main.append($updateProfileForm);
+      $main.fadeIn(1000)
+    })
   })
 
+  // $(document).on('click', 'header button', function () {
+
+  //   let $visible = $('main:visible')
+  //   if ($visible.length === 1) {
+  //     $visible.fadeOut(500 , () => {
+  //       $visible.fadeIn(500)
+  //     })
+  //   }
+  //   else {
+  //     $visible.fadeIn(5000)
+  //   }
+  // })
 
 });
-
 
 // createHeaderDiv('');
 // $('#login-button').click(function(event) {
@@ -104,9 +133,10 @@ const logout = function() {
   })
     .then(data => {
       $main.empty();
+      $main.css('display','none')
       createHeaderDiv({});
       appendMain({});
-
+      $main.fadeIn(1000)
     });
 };
 
@@ -115,7 +145,7 @@ $registerForm = `<form id=register-form class="form">
   <div class="container">
     <div>
       <label for="Name"><b>Name</b></label>
-      <input type="text" placeholder="Name" name="name" required>
+      <input type="text" placeholder="Enter Name" name="name" required>
     </div>
     <div>
       <label for="email"><b>Email</b></label>
@@ -155,7 +185,7 @@ $updateProfileForm = `<form id=update-profile-form class="form">
   <div class="container">
     <div>
       <label for="Name"><b>Name</b></label>
-      <input type="text" placeholder="Name" name="name">
+      <input type="text" placeholder="Enter Name" name="name">
     </div>
     <div>
       <label for="email"><b>Email</b></label>
@@ -169,7 +199,7 @@ $updateProfileForm = `<form id=update-profile-form class="form">
     <label for="location"><b>Location</b></label>
     <input type="text" placeholder="Enter Location" name="location">
   </div>
-    <button type="submit">Update</button>
+    <button type="submit">Update Profile</button>
   </div>
 </div>
 </form>`

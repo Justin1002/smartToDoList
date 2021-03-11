@@ -211,7 +211,7 @@ const renderTasks = () => {
       }
       checkTask();
     })
-
+    $main.fadeIn(1000)
 };
 
 const renderCompletedTask = () => {

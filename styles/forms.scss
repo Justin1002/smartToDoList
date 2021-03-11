@@ -1,30 +1,45 @@
-#login-form div {
+.form div {
 	display: flex;
 	flex-direction: column;
-	width: 60%;
+	width: 40%;
 	margin: auto;
 	margin-top: 30px;
 	border: 1px solid black;
 	div.container {
 		border: none;
 		align-items: center;
-		padding: 50px 0px 50px 0px;
+		padding: 1em 1em;
 		margin: none;
 		margin-bottom: 30px;
 		div {
 			border: none;
 			margin: 15px 0px 15px 0px;
-			flex-direction: row;
+			flex-direction: column;
 			justify-content: center;
 			align-items: center;
 			input {
 				margin-left: 10px;
+        border: none;
+        border-bottom: 1px solid black;
+        outline: none;
+        text-align:center;
+        padding-top:2em;
 			}
+      b {
+        margin: 10px;
+      }
+      label {
+        font-size:1.5em;
+      }
 		}
 	}
 	button {
 		margin: 15px 0px;
-		width: 25vw;
+    outline: none;
+    border: none;
+    background: none;
+    font-size: 2em;
+
 	}
 
 }
