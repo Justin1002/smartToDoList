@@ -7,10 +7,15 @@ main {
   flex-direction: column;
   width: 90%;
   margin: auto;
+  font-family: 'Inter', sans-serif;
 }
 
 textarea {
   resize: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid black;
+  margin-top: 2em;
 }
 
 .show {

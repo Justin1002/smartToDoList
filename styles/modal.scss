@@ -12,12 +12,22 @@
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
+#category-modal {
+  margin: 1em 0em 0.5em 0em;
+  font-size: 2em;
+}
+
+.category-select {
+  font-size: 1.5em;
+}
+
 /* Modal Content */
 .modal-content {
   background-color: #fefefe;
   margin: 250px auto;
-  padding: 20px;
-	width: 90%;
+  padding: 0em 1em 0.5em 1em;
+  width: 90%;
+
 }
 
 .modal-content form div {
@@ -27,9 +37,15 @@
 }
 
 .modal-content form button {
-	width: 30%;
+  display: flex;
 	box-shadow: none;
-	margin-top: 5px;
+  margin-top: 5px;
+  border: none;
+  background-color: white;
+  font-size: 2em;
+  outline: none;
+  align-self: center;
+
 }
 
 /* The Close Button */
@@ -56,3 +72,11 @@ select {
   display: block;
 }
 
+#error {
+  display: flex;
+  flex-direction: row;
+}
+
+#error i {
+  padding-right: 0.5em;
+}

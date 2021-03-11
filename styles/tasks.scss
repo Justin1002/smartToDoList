@@ -1,19 +1,28 @@
 #new-task {
-	border: 1px solid black;
-	box-shadow: 3px 3px 0px 0px black;
+  border: none;
 	padding: 5px;
-	margin: 15px 0px 15px 0px;
+	margin: 0.5em 0em 0.5em 0em;
 	width: fit-content;
+  outline: none;
+	background-color: white;
+  font-family: 'Lato', sans-serif;
+  font-size: 3em;
+  font-weight: bolder;
 }
 
 #new-task:hover {
-	background-color: #aaa;
+	color: slategray;
+}
+
+#no-task-msg {
+	font-size: 3em;
+	margin: none;
 }
 
 section {
 	height: min-content;
-	border: 3px solid black;
-	padding: 20px 20px 0px 20px;
+	border: 1.5px solid black;
+	padding: 1.5em 1.5em 1em 1.5em;
 	margin-bottom: 10px;
 }
 
@@ -22,6 +31,7 @@ section {
 }
 
 section h2 {
+	font-size: 2em;
 	margin: 0px 0px 5px 0px;
 }
 
@@ -32,11 +42,30 @@ section h2 {
 }
 
 section p {
-	margin: 0px 0px 5px 0px;
+	margin: 0.5em 0em;
+	font-size: 1.25em;
+}
+
+div .category-watch:first-child {
+	border: none;
+}
+
+// .button-group button:not(:last-child) {
+// 	border-right: none;
+// }
+
+.taskContainer {
+	padding-bottom: 0.75em;
 }
 
 #tasks-container .task-buttons button {
 	border: none;
+	background-color: white;
+	outline: none;
+}
+
+#tasks-container .task-buttons button:hover {
+	color: slategray;
 }
 
 #tasks-container i {
@@ -45,5 +74,5 @@ section p {
 }
 
 .completion[value=true]{
-  color: green
+  color: slategray
 }

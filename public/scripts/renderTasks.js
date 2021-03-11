@@ -214,6 +214,7 @@ const renderCompletedTask = () => {
           }
         }
       }
+      checkTask();
     })
 }
 
@@ -242,12 +243,12 @@ const submitTask = () => {
   const serializedText = textObj.serialize()
   const textValue = textObj.val()
 
-  const error = input.find('.error')
+  const error = input.find('#error')
   const errorIcon = `<i class="fas fa-exclamation-triangle"></i>`
   error.html("");
 
   if(textValue === "" || textValue === null) {
-    error.append(`${errorIcon} Error: task description cannot be empty`);
+    error.append(`${errorIcon}  Error: task description cannot be empty`);
     textObj.focus()
   }
   else {
@@ -329,6 +330,7 @@ const submitModal = function() {
    $(document).on('click',"#new-task", (event) => {
      console.log('click')
     $('#new-task-popup').toggleClass('show')
+    $('#new-task-form').find('#task-description').focus()
   });
   // Get the span element that closes the modal
   $(document).on('click','.close.new', (event) => {

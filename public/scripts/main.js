@@ -54,11 +54,11 @@ const appendMain = function(user) {
 
     const $buttonGroup = `<div class="button-group">
   <button class='all-category-btn'>All</button>
+  <button class='null-category-btn'>Other</button>
   <button class='watch-category-btn'><i class="fas fa-tv"></i></button>
   <button class='eat-category-btn'><i class="fas fa-utensils"></i></button>
   <button class='read-category-btn'><i class="fas fa-book"></i></button>
   <button class='buy-category-btn'><i class="fas fa-shopping-cart"></i></button>
-  <button class='null-category-btn'>Other</button>
   <button class='completed-category-btn'><i class="fas fa-check-square"></i></button>
 </div>
   `;
@@ -86,9 +86,9 @@ const $newTaskModal = `<!-- The Modal -->
     <span class="close new">&times;</span>
     <form id="new-task-form">
       <div>
-        <textarea name="text_description" id="task-description"></textarea>
+        <textarea name="text_description" id="task-description" placeholder="Enter task description"></textarea>
         <button type="submit" class='submit-task'>Submit</button>
-        <div class="error"></div>
+        <div id="error"></div>
       </div>
     </form>
   </div>
@@ -101,7 +101,7 @@ const $editTaskModal = `<div id="edit-task-popup" class="modal">
   <span class="close edit">&times;</span>
   <form id="edit-task-form">
     <div>
-      <label for="category">Category:</label>
+      <label id="category-modal" for="category">Category:</label>
       <select class="category-select" name="category">
         <option value="null">Uncategorized</option>
         <option value="watch">To Watch</option>

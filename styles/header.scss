@@ -3,24 +3,23 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
+  height: 125px;
   padding: 15px;
   margin-bottom: 20px;
-  background-color: cornflowerblue;
+  background-color: white;
+  color:black;
+  font-family:'Inter', sans-serif;
 }
 
-header h1 {
+#update-profile-button {
   padding: 3px;
-  color: black;
+  font-size: 2.5rem;
+  margin-left: 0.25em;
 }
 
 header div {
   display: flex;
   align-items: center;
-}
-
-header i {
-  font-size: 60px;
 }
 
 header div i {
@@ -31,26 +30,33 @@ header div i {
 header button {
   border: none;
   box-shadow: none;
-  background-color: cornflowerblue;
+  background-color: white;
+  margin-right: 1em;
+  outline: none;
+}
+
+header button:hover {
+  color:slategray
+}
+
+header #main-page-button {
+  font-size: 3em;
 }
 
 header #logout-button {
   border: none;
   box-shadow: none;
-  background-color: cornflowerblue;
+  background-color: white;
+  font-size: 2em;
 }
 
 header #login-button {
   font-size: 30px;
-  border: 2px solid black;
   padding: 10px;
-  border-radius: 10px;
 }
 
 header #register-button {
   font-size: 30px;
-  border: 2px solid black;
 	padding: 10px;
 	margin-right: 10px;
-  border-radius: 10px;
 }

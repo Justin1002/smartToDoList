@@ -63,15 +63,16 @@ $(document).ready(function() {
 const createHeaderDiv  = (user) => {
   const $pageHeader = $("#header");
   $pageHeader.empty();
-  const $logo = $(`<button id=main-page-button><i class="fas fa-check-circle"></i></button>`);
+  const $logo = $(`<button id=main-page-button>ToDo List</i></button>`);
   $('#header').append($logo);
   if (Object.keys(user).length > 0) {
     const $div = $(`
 			<div>
+        <h1>Hello,</h1>
       <button id ="update-profile-button">
-				<h1>${user.name}</h1>
+			  ${user.name}
       </button>
-				<button id="logout-button"><i class="fas fa-sign-out-alt"></i></button>
+				<button id="logout-button">logout</i></button>
 			</div>
 		`);
     $('#header').append($div);
