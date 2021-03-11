@@ -116,7 +116,6 @@ const completeTask = () => {
         }
         else {
           // $completeButton.closest('.task').remove()
-
           // Option 2
           $completeButton.closest('.task').animate({
             height: '0px',
@@ -333,53 +332,53 @@ const submitTask = () => {
 const categoryShow = function(category) {
   switch(category) {
     case 'watch':
-      $(".category-watch").show()
-      $(".category-eat").hide()
-      $(".category-read").hide()
-      $(".category-buy").hide()
-      $(".category-null").hide()
+      $(".category-watch").fadeIn(500)
+      $(".category-eat").fadeOut(250)
+      $(".category-read").fadeOut(250)
+      $(".category-buy").fadeOut(250)
+      $(".category-null").fadeOut(250)
       break;
     case 'eat':
-      $(".category-watch").hide()
+      $(".category-watch").fadeOut(250)
       $(".category-eat").show()
-      $(".category-read").hide()
-      $(".category-buy").hide()
-      $(".category-null").hide()
+      $(".category-read").fadeOut(250)
+      $(".category-buy").fadeOut(250)
+      $(".category-null").fadeOut(250)
       break;
     case 'all':
-      $(".category-watch").show()
-      $(".category-eat").show()
-      $(".category-read").show()
-      $(".category-buy").show()
-      $(".category-null").show()
+      $(".category-watch").fadeIn(500)
+      $(".category-eat").fadeIn(500)
+      $(".category-read").fadeIn(500)
+      $(".category-buy").fadeIn(500)
+      $(".category-null").fadeIn(500)
       break;
     case 'read':
-      $(".category-watch").hide()
-      $(".category-eat").hide()
-      $(".category-read").show()
-      $(".category-buy").hide()
-      $(".category-null").hide()
+      $(".category-watch").fadeOut(250)
+      $(".category-eat").fadeOut(250)
+      $(".category-read").fadeIn(500)
+      $(".category-buy").fadeOut(250)
+      $(".category-null").fadeOut(250)
       break;
     case 'buy':
-      $(".category-watch").hide()
-      $(".category-eat").hide()
-      $(".category-read").hide()
-      $(".category-buy").show()
-      $(".category-null").hide()
+      $(".category-watch").fadeOut(250)
+      $(".category-eat").fadeOut(250)
+      $(".category-read").fadeOut(250)
+      $(".category-buy").fadeIn(500)
+      $(".category-null").fadeOut(250)
       break;
     case 'null':
-      $(".category-watch").hide()
-      $(".category-eat").hide()
-      $(".category-read").hide()
-      $(".category-buy").hide()
-      $(".category-null").show()
+      $(".category-watch").fadeOut(250)
+      $(".category-eat").fadeOut(250)
+      $(".category-read").fadeOut(250)
+      $(".category-buy").fadeOut(250)
+      $(".category-null").fadeIn(500);
       break;
     case 'completed':
-      $(".category-watch").show()
-      $(".category-eat").show()
-      $(".category-read").show()
-      $(".category-buy").show()
-      $(".category-null").show()
+      $(".category-watch").fadeIn(500)
+      $(".category-eat").fadeIn(500)
+      $(".category-read").fadeIn(500)
+      $(".category-buy").fadeIn(500)
+      $(".category-null").fadeIn(500)
       break;
   }
 }
