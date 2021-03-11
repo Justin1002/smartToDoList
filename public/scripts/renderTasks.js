@@ -80,17 +80,6 @@ const escape =  function(str) {
 };
 
 const createTaskElement = (taskObj) => {
-
-  // const $newTask =`
-  // <li class="task ${taskObj.category}" id=${taskObj.id}>
-  //   <p>&bull; ${escape(taskObj.description)}</p>
-  //   <div class="task-buttons">
-  //     <button class='completion' value=${taskObj.completed} type='submit'><i class="far fa-check-square"></i></button>
-  //     <button class='delete' type='submit'><i class="fas fa-trash-alt"></i></button>
-  //     <button class='edit-task' type='submit'><i class="fas fa-pencil-alt"></i></button>
-  //   </div>
-  // </li>
-  // `
   let $newTask = null;
   if (taskObj.completion_date) {
     const date = new Date(taskObj.completion_date)
@@ -141,12 +130,37 @@ const completeTask = () => {
         console.log('Completed Task Successful');
         console.log($completeButton.closest('.taskContainer').children().length)
         if ($completeButton.closest('.taskContainer').children().length === 1) {
+<<<<<<< HEAD
           $completeButton.closest('.taskContainer').siblings().hide()
           $completeButton.closest('.task').remove()
           checkTask()
+=======
+          // $completeButton.closest('.taskContainer').siblings().hide()
+          // Option 2
+          $completeButton.closest('.taskContainer').siblings().fadeOut(500);
+          $completeButton.closest('.task').animate({
+            height: '5px',
+            opacity: 0
+          }, 500);
+
+          setTimeout(()=> {
+            $completeButton.closest('.task').remove()
+            $completeButton.closest('.taskContainer').siblings().hide()
+          },500);
+>>>>>>> animate
         }
         else {
-        $completeButton.closest('.task').remove()
+          // $completeButton.closest('.task').remove()
+          // Option 2
+          $completeButton.closest('.task').animate({
+            height: '0px',
+            opacity: 0
+          }, 500);
+
+
+          setTimeout(()=> {
+            $completeButton.closest('.task').remove()
+          },500);
         }
       })
   })
@@ -163,12 +177,35 @@ const deleteTask = () => {
       .done(() => {
         console.log('Delete Successful');
         if ($deleteButton.closest('.taskContainer').children().length === 1) {
+<<<<<<< HEAD
           $deleteButton.closest('.taskContainer').siblings().hide()
           $deleteButton.closest('.task').remove()
           checkTask()
+=======
+          $deleteButton.closest('.taskContainer').siblings().fadeOut(500);
+          setTimeout(() => {
+            $deleteButton.closest('.taskContainer').siblings().hide()
+          },500)
+
+        setTimeout(() => {
+          $deleteButton.closest(".task").remove();
+        },500);
+        $deleteButton.closest('.task').animate({
+          fontSize: '0.1em',
+          opacity: 0
+        }, 500);
+>>>>>>> animate
         }
         else {
-        $deleteButton.closest('.task').remove()
+        $deleteButton.closest('.task').animate({
+          fontSize: '0.1em',
+          opacity: 0
+        }, 500);
+
+        setTimeout(() => {
+          $deleteButton.closest(".task").remove();
+        },500)
+
         }
       })
   });
@@ -191,8 +228,12 @@ const updateTask = () => {
       data: serializeValue
     })
       .done(() => {
+        $('#edit-task-popup').fadeOut(500);
+        setTimeout( () => {
+          $('#edit-task-popup').toggleClass('show')
+        }, 500);
         console.log('Put Successful');
-        (modal.toggleClass('show'))
+        // (modal.toggleClass('show'))
         textObj.val("")
         renderTasks();
       })
@@ -316,6 +357,7 @@ const submitTask = () => {
     data: serializedText
   })
     .done(() => {
+      $('#new-task-popup').fadeOut(500);
       (modal.toggleClass('show'))
       textObj.val('')
       console.log('posted the task')
@@ -370,7 +412,7 @@ const categoryShow = function(category) {
       $(".category-eat").hide()
       $(".category-read").hide()
       $(".category-buy").hide()
-      $(".category-null").show()
+      $(".category-null").show();
       break;
     case 'completed':
       $(".category-watch").show()
@@ -386,12 +428,14 @@ const submitModal = function() {
   // Get the button that opens the modal
    $(document).on('click',"#new-task", (event) => {
      console.log('click')
-    $('#new-task-popup').toggleClass('show')
+     $('#new-task-popup').fadeIn(500);
+    // $('#new-task-popup').toggleClass('show')
     $('#new-task-form').find('#task-description').focus()
   });
   // Get the span element that closes the modal
   $(document).on('click','.close.new', (event) => {
-    $('#new-task-popup').toggleClass('show')
+    // $('#new-task-popup').toggleClass('show');
+    $('#new-task-popup').fadeOut(500);
   })
 
 }
