@@ -153,8 +153,17 @@ const updateTask = function(userid, category, description, completion, taskID, d
   }
 
   if (completion) {
+    let date = new Date()
+    console.log('console loggin completion var: ', completion);
     queryParams.push(completion)
-    query += ` completed = $${queryParams.length}`
+    query += ` completed = $${queryParams.length},`;
+    if (completion === 'true') {
+      queryParams.push(date);
+      query += ` completion_date = $${queryParams.length}`;
+    } else {
+      queryParams.push(null);
+      query += ` completion_date = $${queryParams.length}`;
+    }
   }
 
     queryParams.push(userid)

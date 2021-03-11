@@ -52,16 +52,42 @@ const escape =  function(str) {
 
 const createTaskElement = (taskObj) => {
 
-  const $newTask =`
-  <li class="task ${taskObj.category}" id=${taskObj.id}>
-    <p>&bull; ${escape(taskObj.description)}</p>
-    <div class="task-buttons">
-      <button class='completion' value=${taskObj.completed} type='submit'><i class="far fa-check-square"></i></button>
-      <button class='delete' type='submit'><i class="fas fa-trash-alt"></i></button>
-      <button class='edit-task' type='submit'><i class="fas fa-pencil-alt"></i></button>
+  // const $newTask =`
+  // <li class="task ${taskObj.category}" id=${taskObj.id}>
+  //   <p>&bull; ${escape(taskObj.description)}</p>
+  //   <div class="task-buttons">
+  //     <button class='completion' value=${taskObj.completed} type='submit'><i class="far fa-check-square"></i></button>
+  //     <button class='delete' type='submit'><i class="fas fa-trash-alt"></i></button>
+  //     <button class='edit-task' type='submit'><i class="fas fa-pencil-alt"></i></button>
+  //   </div>
+  // </li>
+  // `
+  let $newTask = null;
+  if (taskObj.completion_date) {
+    const date = new Date(taskObj.completion_date)
+    $newTask = `
+    <div class="task ${taskObj.category}" id=${taskObj.id}>
+      <p>&bull; ${escape(taskObj.description)}</p>
+      <div class="task-buttons">
+        <a class='show-completion-date'>Completed: ${date.toLocaleDateString()}</a>
+        <button class='completion' value=${taskObj.completed} type='submit'><i class="far fa-check-square"></i></button>
+        <button class='delete' type='submit'><i class="fas fa-trash-alt"></i></button>
+        <button class='edit-task' type='submit'><i class="fas fa-pencil-alt"></i></button>
+      </div>
     </div>
-  </li>
-  `
+    `;
+  } else {
+    $newTask = `
+    <div class="task ${taskObj.category}" id=${taskObj.id}>
+      <p>&bull;${escape(taskObj.description)}</p>
+      <div class="task-buttons">
+        <button class='completion' value=${taskObj.completed} type='submit'><i class="far fa-check-square"></i></button>
+        <button class='delete' type='submit'><i class="fas fa-trash-alt"></i></button>
+        <button class='edit-task' type='submit'><i class="fas fa-pencil-alt"></i></button>
+      </div>
+    </div>
+    `;
+  }
   return $newTask;
 };
 
