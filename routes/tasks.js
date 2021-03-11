@@ -137,9 +137,7 @@ const insertUserTask = function(userid, description, category, db) {
 const updateTask = function(userid, category, description, completion, taskID, db) {
 
   let query = `UPDATE tasks SET`
-  // description = $2
-  // WHERE user_id = $3 AND id = $4
-  // RETURNING *;`
+  
   const queryParams = [];
 
   if (category) {

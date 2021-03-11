@@ -3,38 +3,67 @@ $(document).ready(function() {
   submitModal()
 
     $(document).on('click','.watch-category-btn', () => {
-      categoryShow('watch');
-      renderTasks()
+      $('#tasks-container').fadeOut(1000).promise().then( function() {
+        $('#tasks-container').css('display','none')
+        categoryShow('watch');
+        renderTasks()
+        $('#tasks-container').fadeIn(1000)
+      })
+      // categoryShow('watch');
+      // renderTasks()
     });
-
     $(document).on('click','.all-category-btn', () => {
-      categoryShow('all');
-      renderTasks();
+      $('#tasks-container').fadeOut(1000).promise().then( function() {
+        $('#tasks-container').css('display','none')
+        categoryShow('all');
+        renderTasks();
+        $('#tasks-container').fadeIn(1000)
+      });
     });
 
     $(document).on('click', '.eat-category-btn', () => {
-      categoryShow('eat');
-      renderTasks();
+      $('#tasks-container').fadeOut(1000).promise().then( function() {
+        $('#tasks-container').css('display','none')
+        categoryShow('eat');
+        renderTasks();
+        $('#tasks-container').fadeIn(1000)
+      });
     });
 
     $(document).on('click', '.read-category-btn', () => {
-      categoryShow('read');
-      renderTasks();
+      $('#tasks-container').fadeOut(1000).promise().then( function() {
+        $('#tasks-container').css('display','none')
+        categoryShow('read');
+        renderTasks();
+        $('#tasks-container').fadeIn(1000)
+      });
     });
 
     $(document).on('click','.buy-category-btn', () => {
-      categoryShow('buy');
-      renderTasks();
+      $('#tasks-container').fadeOut(1000).promise().then( function() {
+        $('#tasks-container').css('display','none')
+        categoryShow('buy');
+        renderTasks();
+        $('#tasks-container').fadeIn(1000)
+      });
     });
 
     $(document).on('click', '.null-category-btn', () => {
-      categoryShow('null');
-      renderTasks();
+      $('#tasks-container').fadeOut(1000).promise().then( function() {
+        $('#tasks-container').css('display','none')
+        categoryShow('null');
+        renderTasks();
+        $('#tasks-container').fadeIn(1000)
+      });
     });
 
     $(document).on('click', '.completed-category-btn', () => {
-      categoryShow('completed');
-      renderCompletedTask();
+      $('#tasks-container').fadeOut(1000).promise().then( function() {
+        $('#tasks-container').css('display','none')
+        categoryShow('completed');
+        renderCompletedTask();
+        $('#tasks-container').fadeIn(1000)
+      });
     });
 
     completeTask();
@@ -388,7 +417,7 @@ const checkTask = function() {
   })
   $('#tasks-container').children('div').each(function() {
     if($(this).css('display') !== 'none') {
-      console.log('containsno task 2')
+      console.log('contains no task2')
       count2++
     }
   })

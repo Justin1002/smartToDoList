@@ -21,7 +21,7 @@ $(document).ready(function() {
 const appendMain = function(user) {
   $main = $("main");
   $main.empty();
-  $main.css('display','none')
+  $main.css('display','none');
   if (Object.keys(user).length > 0) {
     console.log('yes');
     // $('#login-form').remove()
