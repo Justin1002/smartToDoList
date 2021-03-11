@@ -441,6 +441,7 @@ const checkTask = function() {
   let count2 = 0
 
   $('#no-task-msg').remove()
+  $('#tasks-container').show()
 
   $('#tasks-container').children('div').each(function () {
     if ($(this).css('display') !== 'none' && $(this).find('.taskContainer').children().length === 0) {
