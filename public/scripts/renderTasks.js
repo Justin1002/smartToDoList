@@ -9,9 +9,8 @@ $(document).ready(function() {
         renderTasks()
         $('#tasks-container').fadeIn(1000)
       })
-      // categoryShow('watch');
-      // renderTasks()
     });
+
     $(document).on('click','.all-category-btn', () => {
       $('#tasks-container').fadeOut(1000).promise().then( function() {
         $('#tasks-container').css('display','none')
@@ -70,7 +69,6 @@ $(document).ready(function() {
     updateTask();
     deleteTask();
     submitTask();
-
 });
 
 const escape =  function(str) {
@@ -173,16 +171,19 @@ const deleteTask = () => {
           $deleteButton.closest('.taskContainer').siblings().fadeOut(500);
           setTimeout(() => {
             $deleteButton.closest('.taskContainer').siblings().hide()
+            checkTask();
           },500)
 
         setTimeout(() => {
           $deleteButton.closest(".task").remove();
+          checkTask();
         },500);
+
         $deleteButton.closest('.task').animate({
           fontSize: '0.1em',
           opacity: 0
         }, 500);
-        checkTask()
+
         }
         else {
         $deleteButton.closest('.task').animate({
@@ -438,8 +439,8 @@ const submitModal = function() {
 const checkTask = function() {
   let count = 0
   let count2 = 0
+
   $('#no-task-msg').remove()
-  $('#tasks-container').show()
 
   $('#tasks-container').children('div').each(function () {
     if ($(this).css('display') !== 'none' && $(this).find('.taskContainer').children().length === 0) {
@@ -455,7 +456,10 @@ const checkTask = function() {
   })
 
   if(count === count2) {
+
     $('#tasks-container').hide()
     $('main').append(`<p id="no-task-msg">There are no tasks here!</p>`)
+    $('#no-task-msg').fadeIn(1000)
   }
+
 }
