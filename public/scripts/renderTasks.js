@@ -332,53 +332,53 @@ const submitTask = () => {
 const categoryShow = function(category) {
   switch(category) {
     case 'watch':
-      $(".category-watch").fadeIn(500)
-      $(".category-eat").fadeOut(250)
-      $(".category-read").fadeOut(250)
-      $(".category-buy").fadeOut(250)
-      $(".category-null").fadeOut(250)
+      $(".category-watch").show()
+      $(".category-eat").hide()
+      $(".category-read").hide()
+      $(".category-buy").hide()
+      $(".category-null").hide()
       break;
     case 'eat':
-      $(".category-watch").fadeOut(250)
+      $(".category-watch").hide()
       $(".category-eat").show()
-      $(".category-read").fadeOut(250)
-      $(".category-buy").fadeOut(250)
-      $(".category-null").fadeOut(250)
+      $(".category-read").hide()
+      $(".category-buy").hide()
+      $(".category-null").hide()
       break;
     case 'all':
-      $(".category-watch").fadeIn(500)
-      $(".category-eat").fadeIn(500)
-      $(".category-read").fadeIn(500)
-      $(".category-buy").fadeIn(500)
-      $(".category-null").fadeIn(500)
+      $(".category-watch").show()
+      $(".category-eat").show()
+      $(".category-read").show()
+      $(".category-buy").show()
+      $(".category-null").show()
       break;
     case 'read':
-      $(".category-watch").fadeOut(250)
-      $(".category-eat").fadeOut(250)
-      $(".category-read").fadeIn(500)
-      $(".category-buy").fadeOut(250)
-      $(".category-null").fadeOut(250)
+      $(".category-watch").hide()
+      $(".category-eat").hide()
+      $(".category-read").show()
+      $(".category-buy").hide()
+      $(".category-null").hide()
       break;
     case 'buy':
-      $(".category-watch").fadeOut(250)
-      $(".category-eat").fadeOut(250)
-      $(".category-read").fadeOut(250)
-      $(".category-buy").fadeIn(500)
-      $(".category-null").fadeOut(250)
+      $(".category-watch").hide()
+      $(".category-eat").hide()
+      $(".category-read").hide()
+      $(".category-buy").show()
+      $(".category-null").hide()
       break;
     case 'null':
       $(".category-watch").fadeOut(250)
       $(".category-eat").fadeOut(250)
       $(".category-read").fadeOut(250)
       $(".category-buy").fadeOut(250)
-      $(".category-null").fadeIn(500);
+      $(".category-null").show();
       break;
     case 'completed':
-      $(".category-watch").fadeIn(500)
-      $(".category-eat").fadeIn(500)
-      $(".category-read").fadeIn(500)
-      $(".category-buy").fadeIn(500)
-      $(".category-null").fadeIn(500)
+      $(".category-watch").show()
+      $(".category-eat").show()
+      $(".category-read").show()
+      $(".category-buy").show()
+      $(".category-null").show()
       break;
   }
 }
