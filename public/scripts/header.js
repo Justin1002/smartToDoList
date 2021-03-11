@@ -145,19 +145,19 @@ $registerForm = `<form id=register-form class="form">
   <div class="container">
     <div>
       <label for="Name"><b>Name</b></label>
-      <input type="text" placeholder="Enter Name" name="name" required>
+      <input type="text" placeholder="Enter Name (required)" name="name" required>
     </div>
     <div>
       <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" required>
+      <input type="text" placeholder="Enter Email (required)" name="email" required>
     </div>
     <div>
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" required>
+      <input type="password" placeholder="Enter Password (required)" name="password" required>
     </div>
     <div>
     <label for="location"><b>Location</b></label>
-    <input type="text" placeholder="Enter Location" name="location" required>
+    <input type="text" placeholder="Enter Location (required)" name="location" required>
   </div>
     <button type="submit">Register</button>
   </div>
