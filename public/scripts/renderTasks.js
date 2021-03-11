@@ -129,14 +129,8 @@ const completeTask = () => {
       .done(() => {
         console.log('Completed Task Successful');
         console.log($completeButton.closest('.taskContainer').children().length)
+
         if ($completeButton.closest('.taskContainer').children().length === 1) {
-<<<<<<< HEAD
-          $completeButton.closest('.taskContainer').siblings().hide()
-          $completeButton.closest('.task').remove()
-          checkTask()
-=======
-          // $completeButton.closest('.taskContainer').siblings().hide()
-          // Option 2
           $completeButton.closest('.taskContainer').siblings().fadeOut(500);
           $completeButton.closest('.task').animate({
             height: '5px',
@@ -146,12 +140,11 @@ const completeTask = () => {
           setTimeout(()=> {
             $completeButton.closest('.task').remove()
             $completeButton.closest('.taskContainer').siblings().hide()
+            checkTask()
           },500);
->>>>>>> animate
+
         }
         else {
-          // $completeButton.closest('.task').remove()
-          // Option 2
           $completeButton.closest('.task').animate({
             height: '0px',
             opacity: 0
@@ -177,11 +170,6 @@ const deleteTask = () => {
       .done(() => {
         console.log('Delete Successful');
         if ($deleteButton.closest('.taskContainer').children().length === 1) {
-<<<<<<< HEAD
-          $deleteButton.closest('.taskContainer').siblings().hide()
-          $deleteButton.closest('.task').remove()
-          checkTask()
-=======
           $deleteButton.closest('.taskContainer').siblings().fadeOut(500);
           setTimeout(() => {
             $deleteButton.closest('.taskContainer').siblings().hide()
@@ -194,7 +182,7 @@ const deleteTask = () => {
           fontSize: '0.1em',
           opacity: 0
         }, 500);
->>>>>>> animate
+        checkTask()
         }
         else {
         $deleteButton.closest('.task').animate({
