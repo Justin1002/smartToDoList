@@ -31,23 +31,23 @@ const appendMain = function(user) {
     const $taskContainer = `<section id="tasks-container">
     <div class="category-watch">
       <h2 class='h2 watch'>To Watch:</h2>
-      <div class='watch taskContainer'></div>
+      <ul class='watch taskContainer'></ul>
     </div>
     <div class="category-eat">
       <h2 class='h2 eat'>To Eat:</h2>
-      <div class='eat taskContainer'></div>
+      <ul class='eat taskContainer'></ul>
     </div>
     <div class="category-read">
       <h2 class='h2 read'>To Read:</h2>
-      <div class='read taskContainer'></div>
+      <ul class='read taskContainer'></ul>
     </div>
     <div class="category-buy">
       <h2 class='h2 buy'>To Buy:</h2>
-      <div class='buy taskContainer'></div>
+      <ul class='buy taskContainer'></ul>
     </div>
     <div class="category-null">
       <h2 class='h2 null'>Uncategorized:</h2>
-      <div class='null taskContainer'></div>
+      <ul class='null taskContainer'></ul>
     </div>
   </section>`;
     const $newTask = `<button id="new-task">Add a new task</button>`;

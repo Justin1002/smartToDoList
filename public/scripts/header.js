@@ -63,7 +63,7 @@ $(document).ready(function() {
 const createHeaderDiv  = (user) => {
   const $pageHeader = $("#header");
   $pageHeader.empty();
-  const $logo = $(`<button id=main-page-button>ToDo List</i></button>`);
+  const $logo = $(`<button id=main-page-button>To Do <i class="fas fa-list"></i></button>`);
   $('#header').append($logo);
   if (Object.keys(user).length > 0) {
     const $div = $(`

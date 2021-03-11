@@ -23,7 +23,7 @@ section {
 	height: min-content;
 	border: 1.5px solid black;
 	padding: 1.5em 1.5em 1em 1.5em;
-	margin-bottom: 10px;
+	margin-bottom: 2em;
 }
 
 .category {
@@ -50,12 +50,11 @@ div .category-watch:first-child {
 	border: none;
 }
 
-// .button-group button:not(:last-child) {
-// 	border-right: none;
-// }
 
 .taskContainer {
 	padding-bottom: 0.75em;
+  padding-left: 0.25em;
+  padding-right: 1em;
 }
 
 #tasks-container .task-buttons button {
