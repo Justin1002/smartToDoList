@@ -185,19 +185,19 @@ $updateProfileForm = `<form id=update-profile-form class="form">
   <div class="container">
     <div>
       <label for="Name"><b>Name</b></label>
-      <input type="text" placeholder="Enter Name" name="name">
+      <input type="text" placeholder="Enter New Name (optional)" name="name">
     </div>
     <div>
       <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email">
+      <input type="text" placeholder="Enter New Email (optional)" name="email">
     </div>
     <div>
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password">
+      <input type="password" placeholder="Enter New Password (optional)" name="password">
     </div>
     <div>
     <label for="location"><b>Location</b></label>
-    <input type="text" placeholder="Enter Location" name="location">
+    <input type="text" placeholder="Enter New Location (optional)" name="location">
   </div>
     <button type="submit">Update Profile</button>
   </div>

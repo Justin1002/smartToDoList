@@ -109,7 +109,7 @@ const $editTaskModal = `<div id="edit-task-popup" class="modal">
         <option value="read">To Read</option>
         <option value="buy">To Buy</option>
       </select>
-      <textarea name="text_description" id='edit-task-description' placeholder="New Description"></textarea>
+      <textarea name="text_description" id='edit-task-description' placeholder="New Description (optional)"></textarea>
       <button type="submit">Submit</button>
       <div class="error"></div>
     </div>
