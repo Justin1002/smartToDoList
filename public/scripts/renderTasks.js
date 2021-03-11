@@ -114,6 +114,7 @@ const completeTask = () => {
         if ($completeButton.closest('.taskContainer').children().length === 1) {
           $completeButton.closest('.taskContainer').siblings().hide()
           $completeButton.closest('.task').remove()
+          checkTask()
         }
         else {
         $completeButton.closest('.task').remove()
@@ -135,6 +136,7 @@ const deleteTask = () => {
         if ($deleteButton.closest('.taskContainer').children().length === 1) {
           $deleteButton.closest('.taskContainer').siblings().hide()
           $deleteButton.closest('.task').remove()
+          checkTask()
         }
         else {
         $deleteButton.closest('.task').remove()
@@ -386,6 +388,7 @@ const checkTask = function() {
   })
   $('#tasks-container').children('div').each(function() {
     if($(this).css('display') !== 'none') {
+      console.log('containsno task 2')
       count2++
     }
   })
