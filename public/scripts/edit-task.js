@@ -8,19 +8,21 @@ $(document).ready(function() {
     console.log(taskID)
     const category = $editTaskButton.closest('.task').attr('class').split(' ')[1];
     $(".category-select").val(category);
-    $('#edit-task-popup').toggleClass('show')
+    // $('#edit-task-popup').toggleClass('show')
+    $('#edit-task-popup').fadeIn(500);
+    setTimeout( () => {
+      $('#edit-task-popup').toggleClass('show')
+    }, 500);
+
     $('body').data('taskID',taskID)
   });
 
   $(document).on('click', '.close.edit', (event) => {
-    $('#edit-task-popup').toggleClass('show')
-  })
-  // const span = document.getElementsByClassName("close")[1];
-  // // When the user clicks on <span> (x), close the modal
-  // span.onclick = function() {
-  //   $('#edit-task-popup').toggleClass('show')
-  // };
+    $('#edit-task-popup').fadeOut(500);
+    setTimeout( () => {
+      $('#edit-task-popup').toggleClass('show')
+    }, 500);
 
-});
-
-
+    //$('#edit-task-popup').toggleClass('show')
+    });
+  });
