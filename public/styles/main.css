@@ -8,6 +8,7 @@ main {
   width: 90%;
   margin: auto;
   font-family: 'Inter', sans-serif;
+  min-height: calc(90vh - 40px);
 }
 
 textarea {
