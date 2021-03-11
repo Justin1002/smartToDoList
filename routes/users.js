@@ -60,6 +60,7 @@ module.exports = (db) => {
       return res.status(401).send('Not logged in')
     }
     const obj = req.body
+    console.log(obj.location)
     if (obj.password) {
     obj.password = bcrypt.hashSync(obj.password, 12);
     }
@@ -86,13 +87,13 @@ const addUser = function(user, db) {
 }
 
 const updateUser = function(obj,userID, db) {
-  let query = `UPDATE users SET`
+  let query = `UPDATE users `
   // name = $1, email = $2, password = $3, location = $4
   // WHERE id = $5`
   const queryParams = [];
   if (obj.name) {
     queryParams.push(obj.name)
-    query += ` name = $${queryParams.length}`
+    query += `SET name = $${queryParams.length}`
   }
 
   if (obj.email) {
@@ -102,7 +103,7 @@ const updateUser = function(obj,userID, db) {
     }
     else {
       queryParams.push(obj.email)
-      query += ` email = $${queryParams.length}`
+      query += `SET email = $${queryParams.length}`
     }
   }
 
@@ -112,19 +113,19 @@ const updateUser = function(obj,userID, db) {
       query += `, password = $${queryParams.length}`
     }
     else {
-      queryParams.push(obj.email)
-      query += ` password = $${queryParams.length}`
+      queryParams.push(obj.password)
+      query += `SET password = $${queryParams.length}`
     }
   }
 
   if (obj.location) {
     if (queryParams.length > 0) {
-      queryParams.push(obj.email)
+      queryParams.push(obj.location)
       query += `, location = $${queryParams.length}`
     }
     else {
-      queryParams.push(obj.email)
-      query += ` location = $${queryParams.length}`
+      queryParams.push(obj.location)
+      query += `SET location = $${queryParams.length}`
     }
   }
 

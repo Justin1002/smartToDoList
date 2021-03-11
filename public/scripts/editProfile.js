@@ -2,7 +2,8 @@ $(() => {
   $(document).on('submit','#update-profile-form', function(event) {
     event.preventDefault();
     console.log('click')
-    const serializedData = $(this).serialize();
+    const serializedData = $('#update-profile-form').serialize();
+    console.log(serializedData)
     editProfile(serializedData)
   })
 

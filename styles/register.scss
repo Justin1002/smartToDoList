@@ -14,12 +14,19 @@
 		div {
 			border: none;
 			margin: 15px 0px 15px 0px;
-			flex-direction: row;
+			flex-direction: column;
 			justify-content: center;
 			align-items: center;
 			input {
 				margin-left: 10px;
+        border: none;
+        border-bottom: 1px solid black;
+        outline: none;
+
 			}
+      b {
+        margin: 10px;
+      }
 		}
 	}
 	button {

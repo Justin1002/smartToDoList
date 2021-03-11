@@ -163,11 +163,11 @@ $updateProfileForm = `<form id=update-profile-form class="form">
     </div>
     <div>
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" >
+      <input type="password" placeholder="Enter Password" name="password">
     </div>
     <div>
     <label for="location"><b>Location</b></label>
-    <input type="text" placeholder="Enter Location" name="location" >
+    <input type="text" placeholder="Enter Location" name="location">
   </div>
     <button type="submit">Update</button>
   </div>
