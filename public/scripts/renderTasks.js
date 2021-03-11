@@ -367,10 +367,10 @@ const categoryShow = function(category) {
       $(".category-null").hide()
       break;
     case 'null':
-      $(".category-watch").fadeOut(250)
-      $(".category-eat").fadeOut(250)
-      $(".category-read").fadeOut(250)
-      $(".category-buy").fadeOut(250)
+      $(".category-watch").hide()
+      $(".category-eat").hide()
+      $(".category-read").hide()
+      $(".category-buy").hide()
       $(".category-null").show();
       break;
     case 'completed':
