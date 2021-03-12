@@ -55,7 +55,7 @@ A smart, auto-categorizing todo list app. The user simply has to add the name of
 
 ## Pictures of App
 
-!['App Demo'](https://raw.githubusercontent.com/Justin1002/smartToDoList/master/app-pics/Login.png);
+!['App Demo'](https://github.com/Justin1002/smartToDoList/blob/master/app-pics/app.demo.gif?raw=true);
 
 !['Login Page'](https://raw.githubusercontent.com/Justin1002/smartToDoList/master/app-pics/Login.png);
 
