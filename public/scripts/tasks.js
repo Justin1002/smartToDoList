@@ -1,9 +1,9 @@
-const animateCategoryDisplay = function(callback, category) {
+const animateCategoryDisplay = function(callback, category, boolean = false) {
   $('#tasks-container').fadeOut(1000).promise().then(function() {
     $('#tasks-container').css('display','none');
     callback(category);
+    renderTasks(boolean)
     $('#tasks-container').fadeIn(1000);
-    checkTask();
   });
 };
 // let clickDisabled = false;
@@ -14,46 +14,69 @@ const animateCategoryDisplay = function(callback, category) {
 // setTimeout(function(){clickDisabled = false;},2000);
 
 $(document).ready(function() {
+  let clickDisabled = false;
+
   $(document).on('click','.watch-category-btn', (event) => {
+    if (clickDisabled) {
+      return;
+    }
+    clickDisabled = true;
+    setTimeout(function() {clickDisabled = false; },1000);
     animateCategoryDisplay(categoryShow,'watch');
   });
 
   $(document).on('click', '.all-category-btn', () => {
+    if (clickDisabled) {
+      return;
+    }
+    clickDisabled = true;
+    setTimeout(function() {clickDisabled = false; },1000);
     animateCategoryDisplay(categoryShow,'all');
   });
 
   $(document).on('click', '.eat-category-btn', () => {
+    if (clickDisabled) {
+      return;
+    }
+    clickDisabled = true;
+    setTimeout(function() {clickDisabled = false; },1000);
     animateCategoryDisplay(categoryShow,'eat');
   });
 
   $(document).on('click', '.read-category-btn', () => {
+    if (clickDisabled) {
+      return;
+    }
+    clickDisabled = true;
+    setTimeout(function() {clickDisabled = false; },1000);
     animateCategoryDisplay(categoryShow,'read');
   });
 
   $(document).on('click','.buy-category-btn', () => {
+    if (clickDisabled) {
+      return;
+    }
+    clickDisabled = true;
+    setTimeout(function() {clickDisabled = false; },1000);
     animateCategoryDisplay(categoryShow,'buy');
   });
 
   $(document).on('click', '.null-category-btn', () => {
+    if (clickDisabled) {
+      return;
+    }
+    clickDisabled = true;
+    setTimeout(function() {clickDisabled = false; },1000);
     animateCategoryDisplay(categoryShow,'null');
   });
-
-  let clickDisabled = false;
 
   $(document).on('click', '.completed-category-btn', () => {
     if (clickDisabled) {
       return;
     }
     clickDisabled = true;
-    setTimeout(function() {
-      clickDisabled = false;
-    },2000);
-    $('#tasks-container').fadeOut(1000).promise().then(function() {
-      $('#tasks-container').css('display','none');
-      categoryShow('completed');
-      renderTasks(true);
-      $('#tasks-container').fadeIn(1000);
-    });
+    setTimeout(function() {clickDisabled = false;},1000);
+    animateCategoryDisplay(categoryShow,'all',true);
   });
 
   completeTask();
