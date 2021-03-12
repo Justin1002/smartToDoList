@@ -1,14 +1,14 @@
 $(() => {
+  // Handle the submission of the login form
   $(document).on('submit','#login-form', function(event) {
     event.preventDefault();
     const serializedData = $(this).serialize();
-    login(serializedData)
-  })
+    login(serializedData);
+  });
+});
 
-})
-
+// Create the appropriate header when a user logs in or alert them if incorrect login info
 const login = function(data) {
-
   $.ajax({
     method: "POST",
     url:'/login',
@@ -20,9 +20,8 @@ const login = function(data) {
     },
   })
     .then( data => {
-      console.log(data)
       createHeaderDiv(data)
       appendMain(data)
-    })
-}
+    });
+};
 

@@ -4,6 +4,7 @@ const yelp = require('yelp-fusion');
 const client = yelp.client(process.env.YELP_APIKEY);
 const convert = require('xml-js');
 
+// Request to DuckDuckGo's API. reutrns a abstract if the query is unambiguous
 const checkDuckDuckGoAPI = (taskString) => {
   const queryString = taskString.split(' ').join('+');  //replace all spaces with a + for API call
   return request(`https://api.duckduckgo.com/?q=${queryString}&format=json`)
@@ -21,6 +22,7 @@ const checkDuckDuckGoAPI = (taskString) => {
   });
 };
 
+// Request to wikipedia's API. Returns a summary, - Not used as DuckDuckGo's API will return the same thing if answer is unambiguous.
 const checkWikipediaAPI = (taskString) => {
   //replace all spaces with a + for API call
   const queryString = taskString.split(' ').join('%20');
@@ -36,6 +38,7 @@ const checkWikipediaAPI = (taskString) => {
   });
 };
 
+//Request to MapQuest's API to get Longitude and Latitude - Not used at Yelp's API can query with just a city name.
 const getCoords = (city) => {
   const cityString = city.split(' ').join('%20');
   return request(`http://www.mapquestapi.com/geocoding/v1/address?key=${process.env.MQ_APIKEY}&location=${cityString}`)
@@ -51,6 +54,7 @@ const getCoords = (city) => {
   });
 };
 
+//Request to Yelp's API to check for local restaurants and cafes.
 const checkYelp = (queryString,city) => {
   return client.search({
     term: queryString,
@@ -62,6 +66,7 @@ const checkYelp = (queryString,city) => {
   });
 };
 
+//Request to wolframs API. Returns possiblitlities of what category the query may belong to.
 const checkWolfram = (taskString) => {
   const queryString = taskString.split(' ').join('+');
   // `http://api.wolframalpha.com/v2/query?input=${queryString}&appid=${process.env.WAAPIKEY}`

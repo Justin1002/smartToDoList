@@ -1,4 +1,3 @@
-// const apiCall = require('api-calls');
 const {
   checkDuckDuckGoAPI,
   checkWikipediaAPI,
@@ -7,6 +6,8 @@ const {
   checkWolfram
 } = require("./api-calls");
 
+
+// Functions that looks for key words in a query to categorize a task
 const simpleTaskCheck = (taskString) => {
   //Going to lowercase the entie string to make for easy checking.
   const lowerCaseTask = taskString.toLowerCase();
@@ -51,8 +52,8 @@ const simpleTaskCheck = (taskString) => {
   return category;
 };
 
+// Function which is the decision engine for the category of the query. It initially looks through wolfram alpha, then DuckDuckGo, and Yelp
 const categoryDecision = (taskString, city) => {
-  //NEED TO IMPLEMENT OTHER ARGUMENT WHICH IS CITY FOR YELP CHECK
   //Check obvious keywords
   //If obvious keywords fail, start calling APIS.
   let category = null;
@@ -97,6 +98,7 @@ const categoryDecision = (taskString, city) => {
                 category = "eat";
                 return category;
               } else {
+                //if aboslutely none of the API's work, then we return null
                 return null;
               }
             });

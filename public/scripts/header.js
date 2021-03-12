@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+  // Get user data and then create header with data
   getUser()
     .then(userObj => {
       console.log(userObj);
@@ -8,94 +8,59 @@ $(document).ready(function() {
 
   $(document).on('click','#main-page-button', function(event) {
     event.preventDefault();
-
+    // gets user details then creates header and main page
     $main.children().fadeOut(1000).promise().then(function() {
       $main.empty();
-    getUser()
-      .then(userObj => {
-        createHeaderDiv(userObj);
-        appendMain(userObj);
-      })
+      getUser()
+        .then(userObj => {
+          createHeaderDiv(userObj);
+          appendMain(userObj);
+        });
     })
-  })
+  });
 
   $(document).on('click', '#logout-button', function(event) {
     event.preventDefault();
     $main.children().fadeOut(1000).promise().then(function() {
-      logout()
-    })
+      logout();
+    });
   });
 
   $(document).on('click','#register-button', function(event) {
     event.preventDefault();
-    $main.children().fadeOut(1000).promise().then(function() {
-      $main.empty();
-      $main.css('display','none')
-      $main.append($registerForm)
-      $main.fadeIn(1000)
-    })
+    animateHeaderButtons($registerForm)
   });
 
   $(document).on('click','#login-button', function(event) {
     event.preventDefault();
-    $main.children().fadeOut(1000).promise().then(function() {
-      $main.empty();
-      $main.css('display','none')
-      $main.append($loginForm);
-      $main.fadeIn(1000)
-    })
+    animateHeaderButtons($loginForm)
   });
 
   $(document).on('click','#update-profile-button', function(event) {
     event.preventDefault();
-    // $main.empty();
-    // $main.append($updateProfileForm);
-    $main.children().fadeOut(1000).promise().then(function() {
-      $main.empty();
-      $main.css('display','none')
-      $main.append($updateProfileForm);
-      $main.fadeIn(1000)
-    })
-  })
-
-  // $(document).on('click', 'header button', function () {
-
-  //   let $visible = $('main:visible')
-  //   if ($visible.length === 1) {
-  //     $visible.fadeOut(500 , () => {
-  //       $visible.fadeIn(500)
-  //     })
-  //   }
-  //   else {
-  //     $visible.fadeIn(5000)
-  //   }
-  // })
+    animateHeaderButtons($updateProfileForm)
+  });
 
 });
 
-// createHeaderDiv('');
-// $('#login-button').click(function(event) {
-//   console.log('login button clicked');
-//   $.ajax({ method: "GET", url: "/login/1"})
-//     .then(function() {
-//       createHeaderDiv('Alice Le');
-//     });
-// });
-// $('#logout-button').click(function(event) {
-//   console.log('logout button clicked');
-//   $.ajax({ method: "GET", url: "/logout"})
-//     .then(function() {
-//       createHeaderDiv('');
-//     });
-// });
+// animates forms
+const animateHeaderButtons = function(form) {
+  $main.children().fadeOut(1000).promise().then(function() {
+    $main.empty();
+    $main.css('display','none')
+    $main.append(form);
+    $main.fadeIn(1000)
+  })
+}
 
+// create header based on if user is logged in or not
 const createHeaderDiv  = (user) => {
   const $pageHeader = $("#header");
   $pageHeader.empty();
   const $logo = $(`<button id=main-page-button>To Do <i class="fas fa-list"></i></button>`);
   $('#header').append($logo);
   if (Object.keys(user).length > 0) {
-    const $div = $(`
+    const $headerButtons = $(`
 			<div>
         <h1>Hello,</h1>
       <button id ="update-profile-button">
@@ -104,18 +69,20 @@ const createHeaderDiv  = (user) => {
 				<button id="logout-button">logout</i></button>
 			</div>
 		`);
-    $('#header').append($div);
+    $('#header').append($headerButtons);
   } else {
-    const $div = $(`
+    const $headerButtons = $(`
       <div>
         <button id="register-button">Register</button>
 			  <button id="login-button">Login</button>
 			</div>
 		`);
-    $('#header').append($div);
+    $('#header').append($headerButtons);
   }
 };
 
+
+// Gets user data
 const getUser = function() {
   return $.ajax({
     url: "/users/",
@@ -126,12 +93,14 @@ const getUser = function() {
 };
 
 
+// Logout method
 const logout = function() {
   $.ajax({
     method: "GET",
     url: '/logout',
   })
     .then(data => {
+      // Animates new page to be default login and user that is not signed in
       $main.empty();
       $main.css('display','none')
       createHeaderDiv({});
@@ -140,6 +109,8 @@ const logout = function() {
     });
 };
 
+
+// HTML for form variables
 $registerForm = `<form id=register-form class="form">
 <div>
   <div class="container">

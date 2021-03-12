@@ -17,6 +17,7 @@ const submitModal = function() {
 
 
 const editModal = function() {
+  // Opens the modal window for editing the task
 	$(document).on('click', '.edit-task', function() {
   	const $editTaskButton = $(this)
   	const taskID = $editTaskButton.closest('.task').attr('id')
